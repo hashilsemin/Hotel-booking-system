@@ -1,3 +1,17 @@
+<style>
+    .zoom {
+
+        transition: transform .2s;
+        /* Animation */
+
+    }
+
+    .zoom:hover {
+        transform: scale(1.1);
+        /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    }
+</style>
+<div style="background: #e9e5b5; height: 700px; padding: 1px;">
 <div class="sidenav">
   <h1
     style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;text-shadow: 2px 2px orange;">
@@ -17,45 +31,43 @@
 
 
 
-<div class="main">
-  <div class="card" style="width: 18rem; float: left; ">
-    <img src="" height="20px" width="20px" class="card-img-top"  >
-    <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+<div class="main" >
+  <div class="card zoom" style="width: 12rem; float: left; ">
+    <img src="/images/hotel.jpg" height="140px" width="10px" class="card-img-top"  >
+    <div style="background-color: #f7ca28;" class="card-body">
+      <p class="card-text"><b>Total hotels</b></p>
     </div>
   </div>
-  <div class="card" style="width: 18rem;margin-left: 500px;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+  <div class="card zoom"  style="width: 12rem; margin-left: 450px;">
+    <img  class="card-img-top" height="140px" width="10px" src="/images/user.jpg" alt="Card image cap">
+    <div style="background-color: #f7ca28;" class="card-body">
+      <p class="card-text"><b>Total user</b></p>
     </div>
   </div>
-  <div class="card" style="width: 18rem; float: left; margin-top: 110px;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+  <div class="card zoom"  style="width: 12rem; float: left; margin-top: 50px;">
+    <img class="card-img-top" height="140px" width="10px" src="/images/booking.png" alt="Card image cap">
+    <div class="card-body" style="background-color: #f7ca28;">
+      <p  class="card-text"><b>Total bookings</b></p>
     </div>
   </div>
-  <div class="card" style="width: 18rem;margin-left: 500px; margin-top: 110px;">
-    <img class="card-img-top" src="..." alt="Card image cap">
-    <div class="card-body">
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
+  <div class="card zoom" style="width: 12rem;margin-left: 450px; margin-top: 50px;">
+    <img class="card-img-top"height="140px" width="10px" src="/images/graph.jpg" alt="Card image cap">
+    <div class="card-body"style="background-color: #f7ca28;">
+      <p class="card-text"><b>Most booking hotel</b></p>
     </div>
   </div>
 
 </div>
 
-
+</div>
 
 <style>
   
 .main{
+
   margin-left: 340px;
-margin-top: 100px;
+margin-top: 50px;
+
 }
   .sidenav {
     height: 100%;
