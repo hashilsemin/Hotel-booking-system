@@ -1,79 +1,103 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Lato", sans-serif;
-}
-
-.sidenav {
-  height: 100%;
-  width: 260px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #f7ca28;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.sidenav a {
-    
-  padding: 1px 15px 6px ;
-  text-decoration: none;
-  font-size: 25px;
-  color: white;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f5df93;
-}
-.btn{
-   background-color:#e9c835 ;
-   width: 170px;
-   height: 170px;
-   margin: 50px 200px 5px 10px;
-}
-
-.main {
-  margin-left: 280px; /* Same as the width of the sidenav */
-  font-size: 28px; /* Increased text to enable scrolling */
-  padding: 0px 10px;
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
-</head>
-<body>
-
-
 <div class="sidenav">
-<h1 style="color: white; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;text-shadow: 2px 2px orange;">TRAVELIX</h1>
-  <a style="margin-top: 51px;" href="#about">About</a><hr color="white">
-  <a href="#services">Services</a><hr color="white">
-  <a href="#clients">Clients</a><hr color="white">
-  <a href="#contact">Contact</a><hr color="white">
+  <h1
+    style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;text-shadow: 2px 2px orange;">
+    TRAVELIX</h1>
+  <hr>
+  <a style="margin-top: 51px;" href="#about">Home</a>
+  <hr color="white">
+  <a href="#services">Hotels</a>
+  <hr color="white">
+  <a href="#clients">Users</a>
+  <hr color="white">
+
+  <a style="color: crimson;" href='/admin/logout'>Logout</a>
+  <hr color="white">
+
 </div>
 
-<div class="main">
 
-  <button  type="button" class="btn">Warning</button>
-  <button  type="button" class="btn">Warning</button>
-  <button  type="button" class="btn">Warning</button>
-  <button  type="button" class="btn">Warning</button>
+
+<div class="main">
+  <div class="card" style="width: 18rem; float: left; ">
+    <img src="" height="20px" width="20px" class="card-img-top"  >
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;margin-left: 500px;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem; float: left; margin-top: 110px;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+    </div>
+  </div>
+  <div class="card" style="width: 18rem;margin-left: 500px; margin-top: 110px;">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+        content.</p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<style>
   
- </div>
-   <script>
-       <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-   </script>
-</body>
-</html> 
+.main{
+  margin-left: 340px;
+margin-top: 100px;
+}
+  .sidenav {
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f7ca28;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  .sidenav a {
+
+    padding: 1px 12px 1px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+  }
+
+  .sidenav a:hover {
+    color: white;
+  }
+
+  .btn {
+    background-color: #e9c835;
+    width: 170px;
+    height: 170px;
+    margin: 50px 200px 5px 10px;
+  }
+
+
+
+  @media screen and (max-height: 450px) {
+    .sidenav {
+      padding-top: 15px;
+    }
+
+    .sidenav a {
+      font-size: 18px;
+    }
+  }
+</style>
