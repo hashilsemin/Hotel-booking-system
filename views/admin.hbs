@@ -1,75 +1,91 @@
 <style>
-    .zoom {
+  .zoom {
 
-        transition: transform .2s;
-        /* Animation */
+    transition: transform .2s;
+    /* Animation */
 
-    }
+  }
 
-    .zoom:hover {
-        transform: scale(1.1);
-        /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
-    }
+  .zoom:hover {
+    transform: scale(1.1);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
 </style>
-<div style="background: #e9e5b5; height: 700px; padding: 1px;">
-<div class="sidenav">
-  <h1
-    style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;text-shadow: 2px 2px orange;">
-    TRAVELIX</h1>
-  <hr>
-  <a style="margin-top: 51px;" href="#about">Home</a>
-  <hr color="white">
-  <a href="#services">Hotels</a>
-  <hr color="white">
-  <a href="#clients">Users</a>
-  <hr color="white">
+<div style=" height: 700px; padding: 1px; background-color: rgb(235, 235, 235)">
+  <div class="sidenav">
+    <h1
+      style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;text-shadow: 2px 2px orange;">
+      TRAVELIX</h1>
+    <hr>
+    <div class="option">
+      <a style="margin-top: 51px;" href="#about">Home</a>
+      <hr color="white">
+      <a href="#services">Hotels</a>
+      <hr color="white">
+      <a href="#clients">Users</a>
+      <hr color="white">
+    </div>
+    <a style="color: crimson;" href='/admin/logout'>Logout</a>
+    <hr color="white">
 
-  <a style="color: crimson;" href='/admin/logout'>Logout</a>
-  <hr color="white">
+  </div>
 
+
+
+  <div class="main">
+    <div class="card zoom" style="margin-left: 40px; width: 12rem; float: left; ">
+      <img src="/images/hotel.jpg" height="140px" width="10px" class="card-img-top">
+      <div class="card-body">
+        <p class="card-text"><b>Total hotels</b></p>
+      </div>
+    </div>
+    <div class="card zoom" style="width: 12rem; margin-left: 450px;">
+      <img class="card-img-top" height="140px" width="10px" src="/images/user.jpg" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text"><b>Total user</b></p>
+      </div>
+    </div>
+    <div class="card zoom" style="margin-left: 40px;  width: 12rem; float: left; margin-top: 50px;">
+      <img class="card-img-top" height="140px" width="10px" src="/images/booking.png" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text"><b>Total bookings</b></p>
+      </div>
+    </div>
+    <div class="card zoom" style="width: 12rem;margin-left: 450px; margin-top: 50px;">
+      <img class="card-img-top" height="140px" width="10px" src="/images/graph.jpg" alt="Card image cap">
+      <div class="card-body">
+        <p class="card-text"><b>Most booking hotel</b></p>
+      </div>
+    </div>
+
+
+
+  </div>
 </div>
-
-
-
-<div class="main" >
-  <div class="card zoom" style="width: 12rem; float: left; ">
-    <img src="/images/hotel.jpg" height="140px" width="10px" class="card-img-top"  >
-    <div style="background-color: #f7ca28;" class="card-body">
-      <p class="card-text"><b>Total hotels</b></p>
-    </div>
-  </div>
-  <div class="card zoom"  style="width: 12rem; margin-left: 450px;">
-    <img  class="card-img-top" height="140px" width="10px" src="/images/user.jpg" alt="Card image cap">
-    <div style="background-color: #f7ca28;" class="card-body">
-      <p class="card-text"><b>Total user</b></p>
-    </div>
-  </div>
-  <div class="card zoom"  style="width: 12rem; float: left; margin-top: 50px;">
-    <img class="card-img-top" height="140px" width="10px" src="/images/booking.png" alt="Card image cap">
-    <div class="card-body" style="background-color: #f7ca28;">
-      <p  class="card-text"><b>Total bookings</b></p>
-    </div>
-  </div>
-  <div class="card zoom" style="width: 12rem;margin-left: 450px; margin-top: 50px;">
-    <img class="card-img-top"height="140px" width="10px" src="/images/graph.jpg" alt="Card image cap">
-    <div class="card-body"style="background-color: #f7ca28;">
-      <p class="card-text"><b>Most booking hotel</b></p>
-    </div>
-  </div>
-
-</div>
-
-</div>
-
 <style>
-  
-.main{
+  .option:hover li:hover a {
+    opacity: 0.6;
+  }
 
-  margin-left: 340px;
-margin-top: 50px;
+  .option:hover li:hover a:hover {
+    opacity: 1;
+  }
 
-}
+
+  .card :hover {
+    background-color: #f7ca28;
+
+  }
+
+  .main {
+
+    margin-left: 340px;
+    margin-top: 50px;
+
+  }
+
   .sidenav {
+
     height: 100%;
     width: 260px;
     position: fixed;
@@ -92,6 +108,7 @@ margin-top: 50px;
 
   .sidenav a:hover {
     color: white;
+
   }
 
   .btn {

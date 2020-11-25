@@ -1,30 +1,59 @@
-<div class="row">
+<div class="row" style="background-color: rgb(235, 235, 235); height: 620px;">
     <div class="col-md-6 m-auto">
         <div class="container mt-5 pl-5">
-            <h2 class="text-center">Log in</h2>
+            <div class="box">
+            
 
 
             <form action="/admin/login" method="POST">
            
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
+                 
                     <input type="email" class="form-control" name="Email" aria-describedby="emailHelp"
-                        placeholder="Enter email">
-                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                        else.</small>
+                        placeholder="Email">
+                   
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
+                  
                     <input type="password" class="form-control" name="Password" placeholder="Password">
                 </div>
                  {{#if error}}
             <p class="text-danger">{{error}}</p>
             {{/if}}
+          
             {{#if status}}
-                <a href="/admin/signup">Create a new account?</a>
+             <a style="color: black;" href="/admin/signup">Create a new account?</a>
                 {{/if}}
-                <button type="submit" class="btn btn-primary float-right">Login</button>
+                <button type="submit" class="btn">LOGIN</button>
             </form>
+            </div>
         </div>
     </div>
 </div>
+<style>
+    .box{
+        padding: 49px;
+        background-color: rgb(185, 182, 182);
+        margin-top: 10px;
+        width: 360px;
+        height: 300px;
+        margin-left: 110px;
+         box-shadow: 0 0 70px 0 rgba(0, 0, 0, 0.5), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
+    .form-group input{
+  
+        background: #f2f1f2;
+        width:240px;
+        margin: 0 0 15px;
+        padding: 25px;
+       box-sizing: border-box;
+         padding: 15px;
+    }
+    .btn {
+         background: #f7ca28;
+         color: black;
+         
+         margin-top: 20px;
+         width: 240px;
+    }
+</style>
