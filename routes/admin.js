@@ -53,5 +53,23 @@ router.get('/logout', (req, res) => {
   req.session.destroy()
   res.redirect('/admin/login')
 })
+router.get('/hotels', async(req, res) => {
+  let hotels=await adminHelpers.getHotels()
 
+  res.render('admin/hotels',{hotels})
+})
+router.get('/add-hotel',(req, res) => {
+ 
+  res.render('admin/add-hotel')
+})
+router.post('/add-hotel',(req,res)=>{
+  console.log(req.body)
+
+  
+  adminHelpers.addHotel(req.body).then(()=>{
+  
+    res.redirect("/admin/hotels")
+  })
+  
+  })
 module.exports = router;

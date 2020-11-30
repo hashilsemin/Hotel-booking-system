@@ -1,0 +1,35 @@
+
+<section>
+    <div class="container">
+        <div class="row">
+            <a href="/admin/add-Hotel" class="btn btn-primary ml-auto mt-2">Add hotel</a>
+        </div>
+        <table class="table mt-4" id="productsTable">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Username</th>
+        <th scope="col">Mobile</th>
+      
+      <th scope="col">Place</th>
+      <th>Options</th>
+    </tr>
+  </thead>
+  <tbody>
+      {{#each hotels}}
+    <tr>
+      <th scope="row">1</th>
+      <td>{{this.Name}}</td>
+     <td>{{this.Mobile}}</td>
+      <td>{{this.Place}}</td>
+   
+    <td>
+        <a href="/admin/edit-hotel/{{this._id}}" class="btn btn-primary">Edit</a>
+        <a href="/admin/delete-hotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{this.Name}} ? ')">Delete</a>
+      </td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>
+    </div> 
+</section>

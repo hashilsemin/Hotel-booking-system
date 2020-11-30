@@ -9,7 +9,7 @@ const verifyuserLogin=(req,res,next)=>{
   }
 }
 /* GET users listing. */
-router.get('/',verifyuserLogin,(req, res)=> {
+router.get('/',(req, res)=> {
   res.render('user/homepage')
 })
 router.get('/userLogin',(req, res)=> {
@@ -20,7 +20,7 @@ router.get('/userLogin',(req, res)=> {
   
 
     res.render('user/userLogin', {error:req.session.userLoginErr })
-    req.session.adminLoginErr=false
+    req.session.userLoginErr=false
   }
 })
 

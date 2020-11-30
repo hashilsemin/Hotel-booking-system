@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var hotelRouter=require('./routes/hotel');
 var indexRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 var hbs=require('express-handlebars')
@@ -31,6 +31,8 @@ db.connect((err)=>{
 })
 app.use('/admin', indexRouter);
 app.use('/', usersRouter);
+app.use('/hotel', hotelRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
