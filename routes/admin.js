@@ -10,8 +10,9 @@ const verifyAdminLogin=(req,res,next)=>{
 }
 
 router.get('/',verifyAdminLogin, function (req, res, next) {
-
-  res.render('admin');
+admin=req.session.admin
+console.log(admin);
+  res.render('admin/admin',{admin});
 });
 
 router.get('/login', async (req, res) => {
@@ -21,7 +22,7 @@ router.get('/login', async (req, res) => {
   } else {
     let status = await adminHelpers.checkAdmin()
 
-    res.render('adminLogin', { status,error:req.session.adminLoginErr })
+    res.render('admin/adminLogin', { status,error:req.session.adminLoginErr })
     req.session.adminLoginErr=false
   }
 })
@@ -39,11 +40,11 @@ router.post('/login', (req, res) => {
   })
 })
 router.get('/signup', (req, res) => {
-  res.render('adminSignup')
+  res.render('admin/adminSignup')
 })
 router.post('/signup', (req, res) => {
   console.log(req.body)
-  adminHelpers.adminSignup(req.body).then((response) => {
+  adminHelpers.adminSignup(req.body).then((response) => { 
 
     res.redirect('/admin/login')
   })
