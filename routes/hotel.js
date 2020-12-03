@@ -9,10 +9,13 @@ const verifyHotelLogin=(req,res,next)=>{
       res.redirect('/hotel/Login')
     }
   }
-router.get('/',function (req, res, next) {
-    hotel=req.session.hotel
-   
-      res.render('hotel/hotel',{hotel});
+router.get('/',async (req, res, ) =>{
+  let hotelId=req.session.hotel
+  console.log(hotelId);
+  let hotel=req.session.hotel
+   let hotelName=await hotelHelpers.getHotelName(hotelId)
+   console.log(hotelName);
+      res.render('hotel/hotel',{hotel,hotelName});
     }); 
 router.get('/Login',(req, res)=> {
     if (req.session.hotelLoggedIn) {
@@ -42,3 +45,28 @@ router.get('/Login',(req, res)=> {
     req.session.destroy()
     res.redirect('/hotel/Login')
   })
+  router.get('/registerHotel',(req,res)=>{
+    res.render('hotel/registerHotel')
+  })
+  router.post('/registerHotel',(req,res)=>{
+    hotelHelpers.registerHotel(req.body).then((response) => { 
+      
+      res.render('hotel/registered')
+  })
+})
+router.get('/updateProfile/:id',async(req,res)=>{
+ let hotelId=req.params.id
+ let hotel = await hotelHelpers.getHoteldata(hotelId)
+
+  res.render('hotel/updateProfile',{hotel})
+})
+router.post('/updateProfile',(req,res)=>{
+ 
+  console.log(req.body);
+    
+    hotelHelpers.updateHotel(req.body).then(()=>{
+  
+      res.redirect("/hotel")
+    })
+    
+    })

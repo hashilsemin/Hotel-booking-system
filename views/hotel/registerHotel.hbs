@@ -5,62 +5,38 @@
 
  <h1
       style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 19px; ;text-shadow: 2px 2px orange;">
-      HOTEL</h1>
+        Be a partner</h1>
 
-
-                <form action="/hotel/hotelLogin" method="POST">
+                <form action="/hotel/registerHotel" method="POST">
 
                     <div class="form-group" style="margin-top: 40px;">
-
-                        <input type="text" class="form-control" name="username" 
-                            placeholder="Username">
-
+                         <input type="Text" class="form-control" name="Name" aria-describedby="emailHelp"
+                            placeholder="Hotel Name">
+                        <input type="text" class="form-control" name="Mobile" aria-describedby="emailHelp"
+                            placeholder="Mobile no">
+<input type="hidden" class="form-control" name="Status" aria-describedby="emailHelp"
+                            value="pending">
                     </div>
                     <div class="form-group">
 
-                        <input type="password" id="password-field" class="form-control" name="Password" placeholder="Password" minlength="3" required>
-                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+                        <input type="text" class="form-control" name="City" placeholder="City">
                     </div>
-                   
-                    {{#if error}}
-                    <p class="text-danger">{{error}}</p>
-                    {{/if}}
+                 
 
-                    <a style="color: black;" href="/hotel/registerHotel">Want to register your hotel?</a>
-       
-                    <button type="submit" class="btn">LOGIN</button>
+                  
+                    <button type="submit" class="btn">REQUEST A CALL</button>
                 </form>
             </div>
         </div>
     </div>
 </div>
-<script>
-$(".toggle-password").click(function() {
-
-  $(this).toggleClass("fa-eye fa-eye-slash");
-  var input = $($(this).attr("toggle"));
-  if (input.attr("type") == "password") {
-    input.attr("type", "text");
-  } else {
-    input.attr("type", "password");
-  }
-});
-</script>
 <style>
-    .field-icon {
-  float: right;
-  margin-right: 30px;
-  margin-top: -42px;
-  position: relative;
-  z-index: 2;
-}
-
     .box {
         padding: 49px;
         background-color: rgb(185, 182, 182);
         margin-top: 10px;
         width: 360px;
-        height: 390px;
+        height: 410px;
         margin-left: 110px;
         box-shadow: 0 0 70px 0 rgba(0, 0, 0, 0.5), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     }

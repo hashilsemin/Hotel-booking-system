@@ -10,7 +10,7 @@ const verifyAdminLogin=(req,res,next)=>{
 }
 
 router.get('/',verifyAdminLogin, function (req, res, next) {
-admin=req.session.admin
+  admin=req.session.admin
 console.log(admin);
   res.render('admin/admin',{admin});
 });
@@ -46,7 +46,7 @@ router.post('/signup', (req, res) => {
   console.log(req.body)
   adminHelpers.adminSignup(req.body).then((response) => { 
 
-    res.redirect('/admin/login')
+    res.redirect('/admin/login') 
   })
 })
 router.get('/logout', (req, res) => {
@@ -58,18 +58,31 @@ router.get('/hotels', async(req, res) => {
 
   res.render('admin/hotels',{hotels})
 })
-router.get('/add-hotel',(req, res) => {
- 
-  res.render('admin/add-hotel')
+router.get('/add-hotel/:id',async(req, res) => {
+  let hotelId=req.params.id
+let hotel = await adminHelpers.getHoteldata(hotelId)
+
+  res.render('admin/add-hotel',{hotel})
 })
 router.post('/add-hotel',(req,res)=>{
-  console.log(req.body)
-
+ 
+console.log(req.body);
   
   adminHelpers.addHotel(req.body).then(()=>{
-  
+
     res.redirect("/admin/hotels")
   })
   
+  })
+  router.get('/requests',async(req, res) => {
+    let hotels=await adminHelpers.getrequestHotels()
+    res.render('admin/hotelRequests',{hotels})
+  })
+  router.get('/delete-hotel/:id',(req,res)=>{
+    let hotelId=req.params.id
+   console.log(hotelId);
+    adminHelpers.deleteProduct(hotelId).then((response)=>{
+      res.redirect('/admin/hotels')
+    })
   })
 module.exports = router;

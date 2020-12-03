@@ -2,27 +2,26 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h2 class="text-center">Add hotel</h2>
+                <h2 class="text-center">Update profile</h2>
 
-                <form action="/admin/add-hotel" method="POST">
+                <form action="/hotel/updateProfile" method="POST">
 
                     <label for="">Name</label>
                     <input type="text" name="Name" class="form-control" value="{{hotel.Name}}">
-
-                    <label for="">Password</label>
-                    <input type="text" name="Password" class="form-control">
 
                     <label for="">Mobile number</label>
                     <input type="text" name="Mobile" class="form-control" value="{{hotel.Mobile}}">
                     <input type="hidden" class="form-control" name="Status" value="accepted">
                     <label for="">Place</label>
+                    <input type="hidden" class="form-control" name="_id" value="{{hotel._id}}">
+                    <label for=""></label>
                     
                     <input type="text" name="City" class="form-control" value="{{hotel.City}}">
 
 
 
 
-                    <button type="submit" class="btn btn-default">Submit</button>
+                    <button type="submit" class="btn btn-default">Update</button>
                 </form>
               
             </div>

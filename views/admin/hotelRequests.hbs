@@ -1,19 +1,15 @@
 
-
-
 <section>
     <div class="container">
-        <div class="row">
-            <a href="/admin/add-Hotel" class="btn btn-primary ml-auto mt-2">Add hotel</a>
-        </div>
+       
         <table class="table mt-4" id="productsTable">
   <thead>
     <tr>
       <th scope="col">No</th>
-      <th scope="col">Username</th>
+      <th scope="col">Name</th>
         <th scope="col">Mobile</th>
       
-      <th scope="col">Place</th>
+      <th scope="col">City</th>
       <th>Options</th>
     </tr>
   </thead>
@@ -26,8 +22,8 @@
       <td>{{this.City}}</td>
    
     <td>
-      
-        <a href="/admin/delete-hotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{this.Name}} ? ')">Delete</a>
+        <a href="/admin/add-hotel/{{this._id}}" class="btn btn-success">Register an account</a>
+        <a href="/admin/delete-hotel/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete {{this.Name}} ? ')">Delete request</a>
       </td>
     </tr>
   {{/each}}
