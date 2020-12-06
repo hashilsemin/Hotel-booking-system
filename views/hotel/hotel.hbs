@@ -1,7 +1,7 @@
-<div style=" height: 700px; padding: 1px; background-color: rgb(235, 235, 235)">
+<div style=" height: 800px; padding: 1px; background-color: rgb(235, 235, 235)">
   <div class="sidenav">
     <h1
-      style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;text-shadow: 2px 2px orange;">
+      style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;">
       TRAVELIX</h1>
  
     {{#if hotelName}}
@@ -9,7 +9,7 @@
     {{/if}}
       <hr>
     <div class="option">
-      <a style="margin-top: 51px;" href="#about">Home</a>
+      <a style="margin-top: 51px;" href="/hotel">Home</a>
       <hr color="white">
       <a href="/hotel/rooms">Rooms</a>
       <hr color="white">
@@ -21,7 +21,7 @@
        <a href="/hotel/updateProfile/{{hotel._id}}">Update profile</a>
       <hr color="white">    {{/if}}
     </div> 
-    <a style="color: crimson;" href='/hotel/logout'>Logout</a>
+    <a style="color: rgb(0, 0, 0);" href='/hotel/logout'>Logout</a>
     <hr color="white">
 
   </div>
@@ -30,36 +30,36 @@
 
   <div class="main">
     <div class="card zoom" style="margin-left: 40px; width: 12rem; float: left; ">
-      <img src="/images/hotel.jpg" height="140px" width="10px" class="card-img-top">
+      <img src="/images/todaybooking.jpg" height="140px" width="10px" class="card-img-top">
       <div class="card-body">
-        <p class="card-text"><b>Today booking</b></p>
+        <p class="card-text"><b>Today's booking</b></p>
       </div>
     </div>
     <div class="card zoom" style="width: 12rem; margin-left: 450px;">
-      <img class="card-img-top" height="140px" width="10px" src="/images/user.jpg" alt="Card image cap">
+      <img class="card-img-top" height="140px" width="10px" src="/images/totalbooking.jpg" alt="Card image cap">
       <div class="card-body">
         <p class="card-text"><b>Total Booking</b></p>
       </div>
     </div>
     <div class="card zoom" style="margin-left: 40px;  width: 12rem; float: left; margin-top: 50px;">
-      <img class="card-img-top" height="140px" width="10px" src="/images/booking.png" alt="Card image cap">
+      <img class="card-img-top" height="140px" width="10px" src="/images/totalcustomers.jpeg" alt="Card image cap">
       <div class="card-body">
         <p class="card-text"><b>Total customers</b></p>
       </div>
     </div>
     <div class="card zoom" style="width: 12rem;margin-left: 450px; margin-top: 50px;">
-      <img class="card-img-top" height="140px" width="10px" src="/images/graph.jpg" alt="Card image cap">
+      <img class="card-img-top" height="140px" width="10px" src="/images/rooms.jpeg" alt="Card image cap">
       <div class="card-body">
         <p class="card-text"><b>Rooms available</b></p>
       </div>
     </div>
     <div class="card zoom" style="width: 12rem;margin-left: 40px; margin-top: 50px; float: left;">
-      <img class="card-img-top" height="140px" width="10px" src="/images/graph.jpg" alt="Card image cap">
+      <img class="card-img-top" height="140px" width="10px" src="/images/income.jpg" alt="Card image cap">
       <div class="card-body">
-        <p class="card-text"><b>Today income</b></p>
+        <p class="card-text"><b>Today's income</b></p>
       </div></div>
       <div class="card zoom" style="width: 12rem;margin-left: 450px; margin-top: 50px;">
-        <img class="card-img-top" height="140px" width="10px" src="/images/graph.jpg" alt="Card image cap">
+        <img class="card-img-top" height="140px" width="10px" src="/images/totalincome.jpg" alt="Card image cap">
         <div class="card-body">
           <p class="card-text"><b>Total income</b></p>
         </div></div>
@@ -92,7 +92,7 @@
 
 
       .card :hover {
-        background-color: #f7ca28;
+        background-color: #ff4e4e;
 
       }
 
@@ -111,7 +111,7 @@
         z-index: 1;
         top: 0;
         left: 0;
-        background-color: #f7ca28;
+        background-color: #ff4e4e;
         overflow-x: hidden;
         padding-top: 20px;
       }

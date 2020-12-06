@@ -58,9 +58,13 @@ module.exports = {
                     $set: {
                         Name: hotelData.Name,
                         Mobile: hotelData.Mobile,
-                       
                         City: hotelData.City,
-                    
+                        Email: hotelData.Email,
+                        Address: hotelData.Address,
+                        Description: hotelData.Description,
+                        Nearby: hotelData.Nearby,
+                        Transport: hotelData.Transport,
+                        Airport: hotelData.Airport,
                     }
                 }
             ).then(() => {

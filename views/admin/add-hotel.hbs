@@ -1,4 +1,29 @@
-<section>
+
+<div style=" height: 700px; padding: 1px; background-color: rgb(235, 235, 235)">
+  <div class="sidenav">
+    <h1
+      style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;text-shadow: 2px 2px orange;">
+      TRAVELIX</h1>
+    <hr>
+{{#if admin}}
+<span style="margin-left: 10px; font-weight: bolder;">Welcome {{admin.Name}}</span>
+{{/if}}
+    <div class="option">
+      <a style="margin-top: 51px;" href="/admin">Home</a>
+      <hr color="white">
+      <a href="/admin/hotels">Hotels</a>
+      <hr color="white">
+      <a href="#clients">Users</a>
+      <hr color="white">
+       <a href="/admin/requests">Hotel requests</a>
+      <hr color="white">
+    </div>
+    <a style="color: crimson;" href='/admin/logout'>Logout</a>
+    <hr color="white">
+
+  </div>
+
+<div class="main"><section>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
@@ -29,3 +54,80 @@
         </div>
     </div>
 </section>
+</div>
+
+</div>
+<style>
+    .zoom {
+
+    transition: transform .2s;
+    /* Animation */
+
+  }
+
+  .zoom:hover {
+    transform: scale(1.1);
+    /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+  }
+  .option:hover li:hover a {
+    opacity: 0.6;
+  }
+
+  .option:hover li:hover a:hover {
+    opacity: 1;
+  }
+
+
+  .card :hover {
+    background-color: #f7ca28;
+
+  }
+
+  .main {
+
+    margin-left: 300px;
+    margin-top: 50px;
+
+  }
+
+  .sidenav {
+
+    height: 100%;
+    width: 260px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #f7ca28;
+    overflow-x: hidden;
+    padding-top: 20px;
+  }
+
+  .sidenav a {
+
+    padding: 1px 12px 1px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+  }
+
+  .sidenav a:hover {
+    color: white;
+
+  }
+
+ 
+
+
+
+  @media screen and (max-height: 450px) {
+    .sidenav {
+      padding-top: 15px;
+    }
+
+    .sidenav a {
+      font-size: 18px;
+    }
+  }
+</style>

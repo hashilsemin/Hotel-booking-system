@@ -1,18 +1,49 @@
+<div style=" height: 700px; padding: 1px; background-color: rgb(235, 235, 235)">
+  <div class="sidenav">
+    <h1
+      style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;">
+      TRAVELIX</h1>
+ 
+    {{#if hotelName}}
+    <span style="margin-left: 10px; font-weight: bolder;">Welcome {{hotelName.Name}}</span>
+    {{/if}}
+      <hr>
+    <div class="option">
+      <a style="margin-top: 51px;" href="/hotel">Home</a>
+      <hr color="white">
+      <a href="/hotel/rooms">Rooms</a>
+      <hr color="white">
+      <a href="#clients">Customer</a>
+      <hr color="white">
+      <a href="#clients">Features</a>
+      <hr color="white">
+ {{#if hotel}}
+       <a href="/hotel/updateProfile/{{hotel._id}}">Update profile</a>
+      <hr color="white">    {{/if}}
+    </div> 
+    <a style="color: rgb(0, 0, 0);" href='/hotel/logout'>Logout</a>
+    <hr color="white">
+
+  </div>
+
+
+
+<div class="main"
 <section>
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-                <h2 class="text-center">Update profile</h2>
+                <h2 class="text-center">Update your profile</h2>
 
                 <form action="/hotel/updateProfile" method="POST">
 
-                    <label for="">Name</label>
+                    <label for="">Hotel Name</label>
                     <input type="text" name="Name" class="form-control" value="{{hotel.Name}}">
 
                     <label for="">Mobile number</label>
                     <input type="text" name="Mobile" class="form-control" value="{{hotel.Mobile}}">
                     <input type="hidden" class="form-control" name="Status" value="accepted">
-                    <label for="">Place</label>
+                    <label for="">City</label>
                     <input type="hidden" class="form-control" name="_id" value="{{hotel._id}}">
                     <label for=""></label>
                     
@@ -21,10 +52,85 @@
 
 
 
-                    <button type="submit" class="btn btn-default">Update</button>
+                    <button style="margin-top: 10px;" type="submit" class="btn btn-danger">Update</button>
                 </form>
               
             </div>
         </div>
     </div>
 </section>
+</div>
+ <style>
+      .zoom {
+
+        transition: transform .2s;
+        /* Animation */
+
+      }
+
+      .zoom:hover {
+        transform: scale(1.1);
+        /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+      }
+
+      .option:hover li:hover a {
+        opacity: 0.6;
+      }
+
+      .option:hover li:hover a:hover {
+        opacity: 1;
+      }
+
+
+      .card :hover {
+        background-color: #f7ca28;
+
+      }
+
+      .main {
+
+        margin-left: 340px;
+        margin-top: 50px;
+
+      }
+
+      .sidenav {
+
+        height: 100%;
+        width: 260px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #ff4e4e;
+        overflow-x: hidden;
+        padding-top: 20px;
+      }
+
+      .sidenav a {
+
+        padding: 1px 12px 1px;
+        text-decoration: none;
+        font-size: 18px;
+        color: black;
+        display: block;
+      }
+
+      .sidenav a:hover {
+        color: white;
+
+      }
+
+ 
+
+
+      @media screen and (max-height: 450px) {
+        .sidenav {
+          padding-top: 15px;
+        }
+
+        .sidenav a {
+          font-size: 18px;
+        }
+      }
+    </style>

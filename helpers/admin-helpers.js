@@ -113,4 +113,14 @@ module.exports = {
             })
         })
     },
+    getreqCount: () => {
+        return new Promise(async (resolve, reject) => {
+        let count = 0
+        let request = await db.get().collection(collection.HOTEL_COLLECTION).count({ Status: "pending" })
+            if (request) {
+                count = request
+            }
+            resolve(count)
+        })
+    },
 }

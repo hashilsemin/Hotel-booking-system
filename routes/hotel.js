@@ -57,14 +57,14 @@ router.get('/Login',(req, res)=> {
 router.get('/updateProfile/:id',async(req,res)=>{
  let hotelId=req.params.id
  let hotel = await hotelHelpers.getHoteldata(hotelId)
-
-  res.render('hotel/updateProfile',{hotel})
+console.log(hotel);
+  res.render('hotel/index',{hotel})
 })
 router.post('/updateProfile',(req,res)=>{
  
   console.log(req.body);
     
-    hotelHelpers.updateHotel(req.body).then(()=>{
+    hotelHelpers.updateHotel(req.body).then(()=>{ 
   
       res.redirect("/hotel")
     })

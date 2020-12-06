@@ -10,14 +10,17 @@
 <span style="margin-left: 10px; font-weight: bolder;">Welcome {{admin.Name}}</span>
 {{/if}}
     <div class="option">
-      <a style="margin-top: 51px;" href="#about">Home</a>
+      <a style="margin-top: 51px;" href="/admin">Home</a>
       <hr color="white">
       <a href="/admin/hotels">Hotels</a>
       <hr color="white">
       <a href="#clients">Users</a>
       <hr color="white">
-       <a href="/admin/requests">Hotel requests</a>
-      <hr color="white">
+      
+     
+       <a class="nav-link" href="/admin/requests">Hotel requests<span class="badge badge-danger"
+                            id="cart-count">{{reqCount}}</span></a>
+       <hr color="white">
     </div>
     <a style="color: crimson;" href='/admin/logout'>Logout</a>
     <hr color="white">

@@ -9,10 +9,10 @@ const verifyAdminLogin=(req,res,next)=>{
   }
 }
 
-router.get('/',verifyAdminLogin, function (req, res, next) {
+router.get('/',verifyAdminLogin,async (req, res)=> {
   admin=req.session.admin
-console.log(admin);
-  res.render('admin/admin',{admin});
+let reqCount=await adminHelpers.getreqCount()
+  res.render('admin/admin',{admin,reqCount});
 });
 
 router.get('/login', async (req, res) => {
@@ -53,16 +53,20 @@ router.get('/logout', (req, res) => {
   req.session.destroy()
   res.redirect('/admin/login')
 })
-router.get('/hotels', async(req, res) => {
+router.get('/hotels',verifyAdminLogin, async(req, res) => {
+  admin=req.session.admin
+  let reqCount=await adminHelpers.getreqCount()
   let hotels=await adminHelpers.getHotels()
 
-  res.render('admin/hotels',{hotels})
+  res.render('admin/hotels',{hotels,admin,reqCount})
 })
-router.get('/add-hotel/:id',async(req, res) => {
+router.get('/add-hotel/:id',verifyAdminLogin,async(req, res) => {
+  let admin=req.session.admin
+  let reqCount=await adminHelpers.getreqCount()
   let hotelId=req.params.id
 let hotel = await adminHelpers.getHoteldata(hotelId)
 
-  res.render('admin/add-hotel',{hotel})
+  res.render('admin/add-hotel',{hotel,admin,reqCount})
 })
 router.post('/add-hotel',(req,res)=>{
  
@@ -74,15 +78,24 @@ console.log(req.body);
   })
   
   })
-  router.get('/requests',async(req, res) => {
+  router.get('/requests',verifyAdminLogin,async(req, res) => {
+    admin=req.session.admin
+    let reqCount=await adminHelpers.getreqCount()
     let hotels=await adminHelpers.getrequestHotels()
-    res.render('admin/hotelRequests',{hotels})
+    res.render('admin/hotelRequests',{hotels,admin,reqCount})
   })
   router.get('/delete-hotel/:id',(req,res)=>{
     let hotelId=req.params.id
    console.log(hotelId);
     adminHelpers.deleteProduct(hotelId).then((response)=>{
       res.redirect('/admin/hotels')
+    })
+  })
+  router.get('/delete-hotelreq/:id',(req,res)=>{
+    let hotelId=req.params.id
+   console.log(hotelId);
+    adminHelpers.deleteProduct(hotelId).then((response)=>{
+      res.redirect('/admin/requests')
     })
   })
 module.exports = router;

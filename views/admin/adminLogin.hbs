@@ -1,90 +1,134 @@
-<div class="row" style="background-color: rgb(235, 235, 235); height: 620px;">
-    <div class="col-md-6 m-auto">
-        <div class="container mt-5 pl-5">
-            <div class="box zoom">
+<div class="row" style="    background:  url(/images/blurcity.jpg) ;  background-position: center;
+  background-repeat: no-repeat;
 
- <h1
-      style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 19px; ;text-shadow: 2px 2px orange;">
-      TRAVELIX</h1>
+    background-size: cover; height: 650px;">
+  <nav style="margin-top: -41px;margin-left: 30px; background-color: rgba(255,255,255,0.0); font-family: cursive;  "
+    class="navbar navbar-expand-lg navbar-light ">
+    <a style="font-weight: bolder; color: white; font-size: 40px;" class="navbar-brand" href="/">Travelix</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a style="color: white; margin-left: 30px  ;" class="nav-link" href="#">Home <span
+              class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a style="color: white;" class="nav-link" href="#">Features</a>
+        </li>
+        <div style="margin-left: 770px; ">
+          <li class="nav-item dropdown">
+            <a style="color: white;" class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              LOGIN/SIGNUP
+            </a>
+            <div style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;"
+              class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-
-                <form action="/admin/login" method="POST">
-
-                    <div class="form-group" style="margin-top: 40px;">
-
-                        <input type="email" class="form-control" name="Email" aria-describedby="emailHelp"
-                            placeholder="Email">
-
-                    </div>
-                    <div class="form-group">
-
-                        <input type="password" id="password-field" class="form-control" name="Password" placeholder="Password" minlength="3" required>
-                    <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                    </div>
-                   
-                    {{#if error}}
-                    <p class="text-danger">{{error}}</p>
-                    {{/if}}
-
-                    {{#if status}}
-                    <a style="color: black;" href="/admin/signup">Create a new account?</a>
-                    {{/if}}
-                    <button type="submit" class="btn">LOGIN</button>
-                </form>
+              <a class="dropdown-item" href="/userLogin">User</a>
+              <hr>
+              <a class="dropdown-item" href="/hotel/Login">Hotel</a>
+              <hr>
+              <a class="dropdown-item" href="/admin/Login">Admin</a>
             </div>
+
+          </li>
         </div>
+      </ul>
+      <hr>
     </div>
+
+  </nav>
+
+  <div class="col-md-6 m-auto">
+    <div class="container pl-5">
+      <div class="box zoom">
+
+        <h1
+          style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 19px; ;">
+          TRAVELIX</h1>
+
+
+        <form action="/admin/login" method="POST">
+
+          <div class="form-group" style="margin-top: 40px;">
+
+            <input type="email" class="form-control" name="Email" aria-describedby="emailHelp" placeholder="Email">
+
+          </div>
+          <div class="form-group">
+
+            <input type="password" id="password-field" class="form-control" name="Password" placeholder="Password"
+              minlength="3" required>
+            <span toggle="#password-field" class="fa fa-fw fa-eye field-icon toggle-password"></span>
+          </div>
+
+          {{#if error}}
+          <p class="text-danger">{{error}}</p>
+          {{/if}}
+
+          {{#if status}}
+          <a style="color: black;" href="/admin/signup">Create a new account?</a>
+          {{/if}}
+          <button type="submit" class="btn">LOGIN</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 <script>
-$(".toggle-password").click(function() {
+  $(".toggle-password").click(function () {
 
-  $(this).toggleClass("fa-eye fa-eye-slash");
-  var input = $($(this).attr("toggle"));
-  if (input.attr("type") == "password") {
-    input.attr("type", "text");
-  } else {
-    input.attr("type", "password");
-  }
-});
+    $(this).toggleClass("fa-eye fa-eye-slash");
+    var input = $($(this).attr("toggle"));
+    if (input.attr("type") == "password") {
+      input.attr("type", "text");
+    } else {
+      input.attr("type", "password");
+    }
+  });
 </script>
 <style>
-    .field-icon {
-  float: right;
-  margin-right: 30px;
-  margin-top: -42px;
-  position: relative;
-  z-index: 2;
-}
+  .field-icon {
+    float: right;
+    margin-right: 30px;
+    margin-top: -42px;
+    position: relative;
+    z-index: 2;
+  }
 
-    .box {
-        padding: 49px;
-        background-color: rgb(185, 182, 182);
-        margin-top: 10px;
-        width: 360px;
-        height: 390px;
-        margin-left: 110px;
-        box-shadow: 0 0 70px 0 rgba(0, 0, 0, 0.5), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-    }
+  .box {
+    padding: 49px;
+    background-color: rgba(185, 182, 182, 0.356);
+   
+    width: 360px;
+    height: 390px;
+    margin-left: 110px;
+    box-shadow: 0 0 70px 0 rgba(0, 0, 0, 0.5), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
 
-    .form-group input {
+  .form-group input {
 
-        background: #f2f1f2;
-        width: 240px;
-        margin: 0 0 15px;
-        padding: 25px;
-        box-sizing: border-box;
-        padding: 15px;
-    }
+    background: #f2f1f2;
+    width: 240px;
+    margin: 0 0 15px;
+    padding: 25px;
+    box-sizing: border-box;
+    padding: 15px;
+  }
 
-    .btn {
-        background: #f7ca28;
-        color: black;
+  .btn {
+    background: #f7ca28;
+    color: black;
 
-        margin-top: 20px;
-        width: 240px;
-        
-    }
-     .zoom {
+    margin-top: 20px;
+    width: 240px;
+
+  }
+
+  .zoom {
 
     transition: transform .2s;
     /* Animation */
