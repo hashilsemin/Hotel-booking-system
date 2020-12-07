@@ -50,7 +50,7 @@ router.get('/Login',(req, res)=> {
   })
   router.post('/registerHotel',(req,res)=>{
     hotelHelpers.registerHotel(req.body).then((response) => { 
-      
+      console.log(req.body);
       res.render('hotel/registered')
   })
 })

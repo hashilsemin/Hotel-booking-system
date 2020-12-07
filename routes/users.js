@@ -1,15 +1,17 @@
 var express = require('express');
 var router = express.Router();
 const userHelpers = require('../helpers/user-helpers')
+const nodemailer = require("nodemailer");
 const verifyuserLogin=(req,res,next)=>{
   if(req.session.userLoggedIn){
     next()
   }else{
-    res.redirect('/userLogin')
+    res.redirect('/userLogin') 
   }
 }
 /* GET users listing. */
 router.get('/',(req, res)=> {
+  
   res.render('user/homepage')
 })
 router.get('/userLogin',(req, res)=> {

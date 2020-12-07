@@ -10,6 +10,7 @@ var hbs=require('express-handlebars')
 var app = express();
 var db=require('./config/connection')
 var session = require('express-session')
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 

@@ -4,6 +4,8 @@ const bcrypt = require('bcrypt')
 const { response } = require('express')
 const { ObjectID } = require('mongodb')
 var objectId = require('mongodb').ObjectID
+var generator = require('generate-password');
+const nodemailer = require("nodemailer");
 
 module.exports = {
 
@@ -58,7 +60,32 @@ module.exports = {
     addHotel: (hotelData) => {
 
         return new Promise(async (resolve, reject) => {
-            hotelData.Password = await bcrypt.hash(hotelData.Password, 10)
+            var password = generator.generate({
+                length: 10,
+                numbers: true
+            });
+            var transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'hashilsemin2@gmail.com',
+                  pass: ''
+                }
+              });
+              var mailOptions = {
+                from: 'hashilsemin2@gmail.com',
+                to: hotelData.Email,
+                subject: 'Use the given password to sign to your travelix account',
+                text: 'We are so happy to partner up with you, your password is '+password 
+              };
+            
+            transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+            console.log(error);
+            } else {
+            console.log('Email sent: ' + info.response);
+            }
+            });
+            password = await bcrypt.hash(password, 10)
             db.get().collection(collection.HOTEL_COLLECTION).updateOne({ Mobile: hotelData.Mobile },
                 {
                     $set: {
@@ -66,9 +93,10 @@ module.exports = {
                         Mobile: hotelData.Mobile,
                         Status: "accepted",
                         City: hotelData.City,
-                        Password: hotelData.Password
+                        Password: password
                     }
-                }
+                },
+             
             ).then(() => {
 
 
