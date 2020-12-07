@@ -1,5 +1,4 @@
 
-
 <div style=" height: 700px; padding: 1px; background-color: rgb(235, 235, 235)">
   <div class="sidenav">
     <h1
@@ -16,49 +15,44 @@
       <hr color="white">
       <a href="#clients">Users</a>
       <hr color="white">
-          <a href="/admin/cities">Cities</a>
+       <a href="/admin/requests">Hotel requests</a>
       <hr color="white">
-     
-       <a class="nav-link" href="/admin/requests">Hotel requests<span class="badge badge-danger"
-                            id="cart-count">{{reqCount}}</span></a>
-       <hr color="white">
     </div>
     <a style="color: crimson;" href='/admin/logout'>Logout</a>
     <hr color="white">
 
   </div>
 
+<div class="main"><section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Add city</h2>
+
+                <form action="/admin/add-city" method="POST">
+
+                    <label for="">City Name</label>
+                    <input type="text" name="Name" class="form-control" >
+          
+           
+
+                
+                    <label for="">State</label>
+                    
+                    <input type="text" name="State" class="form-control" >
 
 
-  <div class="main">
-    <div class="card zoom" style="margin-left: 40px; width: 12rem; float: left; ">
-      <img src="/images/hotel.jpg" height="140px" width="10px" class="card-img-top">
-      <div class="card-body">
-        <p class="card-text"><b>Total hotels</b></p>
-      </div>
+
+
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+              
+            </div>
+        </div>
     </div>
-    <div class="card zoom" style="width: 12rem; margin-left: 450px;">
-      <img class="card-img-top" height="140px" width="10px" src="/images/user.jpg" alt="Card image cap">
-      <div class="card-body">
-        <p class="card-text"><b>Total user</b></p>
-      </div>
-    </div>
-    <div class="card zoom" style="margin-left: 40px;  width: 12rem; float: left; margin-top: 50px;">
-      <img class="card-img-top" height="140px" width="10px" src="/images/booking.png" alt="Card image cap">
-      <div class="card-body">
-        <p class="card-text"><b>Total bookings</b></p>
-      </div>
-    </div>
-    <div class="card zoom" style="width: 12rem;margin-left: 450px; margin-top: 50px;">
-      <img class="card-img-top" height="140px" width="10px" src="/images/graph.jpg" alt="Card image cap">
-      <div class="card-body">
-        <p class="card-text"><b>Most booking hotel</b></p>
-      </div>
-    </div>
+</section>
+</div>
 
-
-
-  </div>
 </div>
 <style>
     .zoom {
@@ -88,7 +82,7 @@
 
   .main {
 
-    margin-left: 340px;
+    margin-left: 300px;
     margin-top: 50px;
 
   }
@@ -120,12 +114,7 @@
 
   }
 
-  .btn {
-    background-color: #e9c835;
-    width: 170px;
-    height: 170px;
-    margin: 50px 200px 5px 10px;
-  }
+ 
 
 
 

@@ -87,7 +87,7 @@ console.log(req.body);
   router.get('/delete-hotel/:id',(req,res)=>{
     let hotelId=req.params.id
    console.log(hotelId);
-    adminHelpers.deleteProduct(hotelId).then((response)=>{
+    adminHelpers.deleteHotel(hotelId).then((response)=>{
       res.redirect('/admin/hotels')
     })
   })
@@ -98,4 +98,35 @@ console.log(req.body);
       res.redirect('/admin/requests')
     })
   })
+  router.get('/cities',verifyAdminLogin, async(req, res) => {
+    admin=req.session.admin
+    let reqCount=await adminHelpers.getreqCount()
+    let cities=await adminHelpers.getCities()
+  console.log(cities);
+    res.render('admin/cities',{cities,admin,reqCount})
+  })
+  router.get('/add-city',verifyAdminLogin,async(req, res) => {
+    let admin=req.session.admin
+    let reqCount=await adminHelpers.getreqCount()
+  
+    res.render('admin/add-city')
+  })
+  router.post('/add-city',(req,res)=>{
+ 
+    console.log(req.body);
+      
+      adminHelpers.addCity(req.body).then(()=>{
+    
+        res.redirect("/admin/cities")
+      })
+      
+      })
+      router.get('/delete-city/:id',(req,res)=>{
+        let cityId=req.params.id
+       console.log(cityId);
+        adminHelpers.deleteCity(cityId).then((response)=>{
+          res.redirect('/admin/cities')
+        })
+      })
+
 module.exports = router;

@@ -131,7 +131,7 @@ module.exports = {
         })
     },
   
-    deleteProduct:(hotelId)=>{
+    deleteHotel:(hotelId)=>{
         return new Promise((resolve,reject)=>{
             
             
@@ -149,6 +149,39 @@ module.exports = {
                 count = request
             }
             resolve(count)
+        })
+    },
+   
+    getCities: () => {
+        return new Promise(async (resolve, reject) => {
+            let cities = await db.get().collection(collection.CITY_COLLECTION).find({}).toArray()
+            resolve(cities)
+        })
+
+    },
+   
+    addCity: (cityData) => {
+
+        return new Promise(async (resolve, reject) => {
+        
+        
+            db.get().collection(collection.CITY_COLLECTION).insertOne(cityData).then(() => {
+
+
+                resolve()
+            })
+        })
+
+    },
+    
+    deleteCity:(cityId)=>{
+        return new Promise((resolve,reject)=>{
+            
+            
+            db.get().collection(collection.CITY_COLLECTION).removeOne({_id:objectId(cityId)}).then((response)=>{
+                //console.log(response)
+                resolve(response)
+            })
         })
     },
 }
