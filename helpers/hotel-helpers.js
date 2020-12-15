@@ -83,6 +83,81 @@ module.exports = {
                     resolve(hotel)
                 })
       
-    }
+    },
+   
+    getRooms: (hotelData) => {
+        return new Promise(async (resolve, reject) => {
+            let rooms = await db.get().collection(collection.ROOM_COLLECTION).find({ hotelId: hotelData._id}).toArray()
+            resolve(rooms)
+        })
+
+    },
+    addRoom: (roomData)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collection.ROOM_COLLECTION).insertOne(roomData).then((data)=>{
+        resolve(data.ops[0]._id)
+            })
+        })
+    },
+ 
+    deleteRoom:(roomId)=>{
+        return new Promise((resolve,reject)=>{
+            
+            
+            db.get().collection(collection.ROOM_COLLECTION).removeOne({_id:objectId(roomId)}).then((response)=>{
+                //console.log(response)
+                resolve(response)
+            })
+        })
+    },
   
+    getRoomdata: (roomId) => {
+        return new Promise(async (resolve, reject) => {
+            db.get().collection(collection.ROOM_COLLECTION).findOne({ _id: objectId(roomId) }).then((room) => {
+                resolve(room)
+
+            })
+
+        })
+    },
+   
+    editRoom: (roomData,roomId) => {
+
+        return new Promise(async (resolve, reject) => {
+       
+            db.get().collection(collection.ROOM_COLLECTION).updateOne({ _id: objectId(roomId) },
+                {
+                    $set: {
+                        Description:roomData.Description,
+                        Type: roomData.Type,
+                        Available: roomData.Available,
+                        Price: roomData.Price,
+                        Features: roomData.Features,
+                        AC: roomData.AC,
+                        Balcony: roomData.Balcony,
+                        Freewifi: roomData.Freewifi,
+                        Heater: roomData.Heater,
+                        Smokingroom: roomData.Smokingroom,
+                        TV: roomData.TV,
+                        Newspaper: roomData.Newspaper,
+                        Slippers: roomData.Slippers,
+                        Minibar: roomData.Minibar,
+                        Airpurifier: roomData.Airpurifier,
+                        Telephone: roomData.Telephone,
+                        Ironbox: roomData.Ironbox,
+                        Housekeeping: roomData.Housekeeping,
+                        Snackbasket: roomData.Snackbasket,
+                        Smokealarm: roomData.Smokealarm,
+                        Toiletpaper: roomData.Toiletpaper,
+
+                    }
+                }
+            ).then(() => {
+
+
+                resolve()
+            })
+        })
+
+    },
 }

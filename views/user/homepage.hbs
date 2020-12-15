@@ -1,62 +1,156 @@
-<div class="image" >
-  <nav style=" background-color: rgba(255,255,255,0.0); font-family: cursive;  " class="navbar navbar-expand-lg navbar-light ">
-  <a style="font-weight: bolder; color: white; font-size: 40px;" class="navbar-brand" href="#">Travelix</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarNavDropdown">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a style="color: white; margin-left: 30px  ;" class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a style="color: white;"  class="nav-link" href="#">Features</a>
-      </li>
-     <div style="margin-left: 770px; ">
-      <li class="nav-item dropdown">
-        <a style="color: white;"   class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-         LOGIN/SIGNUP 
-        </a>
-        <div style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-  
-          <a class="dropdown-item"  href="/userLogin">User</a><hr>
-          <a class="dropdown-item" href="/hotel/Login">Hotel</a><hr>
-          <a class="dropdown-item" href="/admin/Login">Admin</a>
-        </div>
+<div style="background-color: rgb(255, 255, 255);">
+  <div class="image">
+    <nav style=" background-color: rgba(255, 255, 255, 0); font-family: cursive; position: fixed; width: 100% ;z-index: 1; "
+      class="navbar navbar-expand-lg navbar-light ">
+      <a style="font-weight: bolder; color: white; font-size: 40px;" class="navbar-brand" href="#">Travelix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a style="color: white; margin-left: 30px  ;" class="nav-link" href="#city">Cities <span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a style="color: white;" class="nav-link" href="#">Features</a>
+          </li>
+          <div style="margin-left: 740px; ">
+            <li class="nav-item dropdown">
 
-      </li>
+              {{#if gUser}}
+
+
+              <a style="color: white; font-size: x-large; " class="nav-link dropdown-toggle " href="#"
+                id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{name}}
+                <img class="rounded-circle" src="{{pic}}" width="45" height="45" alt="">
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 250px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+
+
+                  <a class="dropdown-item" href="/googleLogout">Logout</a>
+                  <hr>
+                  <a class="dropdown-item" href="">Recent bookings</a>
+                </div>
+                {{else if user}}
+                <a style="color: white; font-size: x-large;" class="nav-link dropdown-toggle " href="#"
+                  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{userName.Name}}
+                </a>
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                  <a class="dropdown-item" href="/updateProfile/{{user._id}}">Update profile</a>
+                  <hr>
+                  <a class="dropdown-item" href="/userLogout">Logout</a>
+                  <hr>
+                  <a class="dropdown-item" href="">Recent bookings</a>
+                </div>
+                {{else}}
+                <a style="color: white;" class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  LOGIN/SIGNUP
+                </a>
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                  <a class="dropdown-item" href="/userLogin">User</a>
+                  <hr>
+                  <a class="dropdown-item" href="/hotel/Login">Hotel</a>
+                  <hr>
+                  <a class="dropdown-item" href="/admin/Login">Admin</a>
+                </div>
+                {{/if}}
+
+
+            </li>
+          </div>
+        </ul>
+        <hr>
       </div>
-    </ul>
-    <hr>
+
+    </nav>
+
+
   </div>
 
-</nav>
+<hr id="city">
+<h2 style="font-weight: bolder; margin-left: 200px;"></h2> 
 
+  {{#each cities}}
+  <a href="/city/{{this.Name}}" >
+  <div style="margin-left: 200px; width: 300px; float: left; margin-top: 60px;" class="card  text-white">
 
+  <img style="width: 300px; height: 200px;" class="card-img" src="/room-images/{{this._id}}.jpg" alt="Card image">
+  <div style="margin-top: 50px;  display: flex;
+  align-items: center;" class="card-img-overlay">
+    <h2 style="font-weight: bolder; font-family: Comic Sans MS;" class="card-title"><i>{{this.Name}}</i></h1>
+   
+  </div>
 </div>
-<style>
-a:hover
-{   
-  text-decoration: none;
-  
+  </a>
+
+  {{/each}}
+</div>
+<script>
+  $(window).scroll(function () {
+if ($(window).scrollTop() >= 50) {
+$('.navbar').css('background','#111');
+} else {
+$('.navbar').css('background','transparent');
 }
-  .dropdown-item{
-  
+});
+</script>
+<style>
+  a {
+    color: inherit;
+  }
+
+  .box {
+    color: #111;
+    float: left;
+    width: 300px;
+    margin-top: 60px;
+    margin-left: 260px;
+    border: 2px solid rgb(201, 199, 199);
+    padding: 10px;
+    border-radius: 25px;
+    padding-left: 40px;
+  }
+
+  .boxFirst {}
+
+
+
+  .Places {}
+
+  a:hover {
+    text-decoration: none;
+
+  }
+
+  .dropdown-item {
+
     font-size: larger;
     padding: 1px;
 
   }
 
-.image {
-    
-    background:  url(/images/citybg.jpg) ;
- 
-  height: 500px;
-  background-position: center;
-  background-repeat: no-repeat;
+  .image {
+
+    background: url(/images/citybg.jpg);
+
+    height: 500px;
+    background-position: center;
+    background-repeat: no-repeat;
 
     background-size: cover;
- 
-}
 
+  }
 </style>

@@ -8,8 +8,10 @@ var indexRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 var hbs=require('express-handlebars')
 var app = express();
+var fileUpload=require('express-fileupload')
 var db=require('./config/connection')
 var session = require('express-session')
+const passport = require('passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,12 +22,14 @@ app.use(session({
 }))
 app.set('view engine', 'hbs');
 app.engine('hbs',hbs({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partial/'}));
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(fileUpload())
 db.connect((err)=>{
   if(err) console.log("connectiion not succesfull "+err);
   else console.log("Data base connected");

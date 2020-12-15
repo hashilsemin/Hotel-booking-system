@@ -68,7 +68,7 @@ module.exports = {
                 service: 'gmail',
                 auth: {
                   user: 'hashilsemin2@gmail.com',
-                  pass: ''
+                  pass: 'Naseehaanwar10'
                 }
               });
               var mailOptions = {
@@ -165,10 +165,10 @@ module.exports = {
         return new Promise(async (resolve, reject) => {
         
         
-            db.get().collection(collection.CITY_COLLECTION).insertOne(cityData).then(() => {
+            db.get().collection(collection.CITY_COLLECTION).insertOne(cityData).then((data) => {
 
 
-                resolve()
+               resolve(data.ops[0]._id)
             })
         })
 
