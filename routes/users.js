@@ -41,7 +41,7 @@ router.get('/',async(req, res)=> {
   }else{
   
     let cities=await adminHelpers.getCities()
-  console.log(cities);
+
     res.render('user/homepage',{cities})
   }
   
@@ -122,7 +122,7 @@ router.get('/city/:id', async(req, res) => {
   console.log(city);
   let hotels=await userHelpers.getHotels(city)
   console.log(hotels);
- res.render('user/city',{hotels,city})
+ res.render('user/city',{hotels,city}) 
    
 
 })
@@ -137,4 +137,42 @@ router.get('/rooms/:id', async(req, res) => {
    
 
 })
-module.exports = router;
+router.post('/search', (req, res) => {
+  console.log(req.body);
+  let city=req.body.City
+  var string = encodeURIComponent(city);
+  res.redirect('/City/'+ string);
+ 
+    
+ 
+ })
+ router.post('/availableRooms',async (req, res) => {
+  console.log(req.body);
+ 
+
+
+  res.render('user/availableRooms');
+ 
+    
+ 
+ })
+ router.get('/bookroom/:id', async(req, res) => {
+  let room = req.params.id
+  let user=req.session.user
+  console.log(user);
+  
+  let rooms=await userHelpers.bookRoom(room)
+ console.log(rooms);
+ res.render('user/bookroom',{rooms,user})
+   
+
+}) 
+router.post('/booked',async(req,res)=>{
+userHelpers.addBooking(req.body).then(()=>{
+  res.redirect('/')
+})
+  console.log(req.body);
+})
+
+
+module.exports = router; 

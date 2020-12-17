@@ -1,0 +1,38 @@
+ {{#each rooms}}
+       
+        <div style="background-color: rgb(240, 240, 240);  border-radius: 25px;margin-left: 50px;  margin-top: 30px; width: 900px; " class="card1  flex-row flex-wrap">
+            <div class="card-header border-0">
+                <img src="/room-images/{{this._id}}.jpg" width="310px" alt="">
+            </div>
+            <div style="margin-left: 25px; margin-top: 20px; overflow:hidden; min-height:100px" class="card-block px-2">
+                <h4 style="font-weight: bold; " class="card-title"><span style="color: gray;">Room type:  </span>{{this.Type}}</h4>
+                <p style="font-weight: bold;" class="card-text">{{this.Description}}</p>
+                 <p style="font-weight: bold; font-size: xx-large;" class="card-price"><span style="font-size: medium;">INR :</span> {{this.Price}} <span>&#8377;</span></p>
+                <h4 style="font-size:medium;" class="card-title"><span style="color: gray; font-size: large;">Amenities : </span>
+                    {{#if AC}}Air conditioner <i class="fa fa-thermometer-empty" style="font-size:20px"></i> &nbsp;  {{/if}}
+           {{#if Freewifi}}Free wifi <i class="fa fa-wifi" style="font-size:20px"></i>  &nbsp;   {{/if}}
+             {{#if Heater}}Heater <i class="fa fa-tint" style="font-size:20px"></i>   {{/if}}
+               {{#if Smokingroom}}Smoking room <i class="fa fa-fire" style="font-size:20px"></i>  &nbsp;  {{/if}}
+                 {{#if TV}}TV <i class="fa fa-tv" style="font-size:20px"></i> &nbsp; {{/if}}
+                   {{#if Newspaper}}News paper <i class="fa fa-newspaper-o" style="font-size:20px"></i> &nbsp;  {{/if}}
+                     {{#if Ironbox}}Iron box <i class="fa fa-joint" style="font-size:20px"></i> &nbsp;  {{/if}}
+                       {{#if Slippers}}Slippers <i class="fa fa-shoe-prints" style="font-size:20px"></i> &nbsp;   {{/if}}
+                         {{#if Minibar}}Minibar <i class="fa fa-glass-martini-alt" style="font-size:20px"></i> &nbsp;  {{/if}}
+                           {{#if Airpurifier}}Air purifier <i class="fa fa-wind" style="font-size:20px"></i> &nbsp; {{/if}}
+                             {{#if Telephone}}Telephone <i class="fa phone-square-alt" style="font-size:20px"></i> &nbsp;  {{/if}}
+                               {{#if Housekeeping}}House keeping <i class="fa fa-house-user" style="font-size:20px"></i> &nbsp;   {{/if}}
+                                 {{#if Snackbasket}}Snack basket <i class="fa fa-cookie-bite" style="font-size:20px"></i> &nbsp; {{/if}}
+                                   {{#if Smokealarm}}Smoke alarm <i class="fa fa-fire-extinguisher"style="font-size:20px"></i> &nbsp; {{/if}}
+                                     {{#if Toiletpaper}}Toilet paper <i class="fa fa-toilet-paper" style="font-size:20px"></i> &nbsp;   {{/if}}
+                                       {{#if Balcony}}Balcony <i class="fa fa-binoculars" style="font-size:20px"></i> &nbsp;   {{/if}}
+                </h4>
+
+               <button type="button" onclick="increment()">+</button>
+    <input name="quantity" id=demoInput type=number min=1 max=3>
+    <button type="button"  onclick="decrement()">-</button>
+            </div>
+            <div class="w-100"></div>
+
+        </div>
+     
+        {{/each}}

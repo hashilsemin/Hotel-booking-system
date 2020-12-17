@@ -109,4 +109,37 @@ getRoom: (hotelId) => {
     })
 
 },
+getDates:(dates)=>{
+    
+    return new Promise(async (resolve, reject) => {
+let start=dates.checkIn
+let end=dates.checkOut
+
+        resolve(getDaysArray)
+    })
+
+},
+bookRoom: (roomId) => {
+    return new Promise(async (resolve, reject) => {
+       db.get().collection(collection.ROOM_COLLECTION).findOne({ _id: objectId(roomId) }).then((data)=>{
+            resolve(data)
+        })
+       
+    })
+
+},
+
+addBooking: (bookingData) => {
+
+    return new Promise(async (resolve, reject) => {
+    
+    
+        db.get().collection(collection.BOOKING_COLLECTION).insertOne(bookingData).then(() => {
+
+
+           resolve()
+        })
+    })
+
+},
 }

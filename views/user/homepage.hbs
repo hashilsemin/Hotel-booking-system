@@ -1,6 +1,7 @@
 <div style="background-color: rgb(255, 255, 255);">
   <div class="image">
-    <nav style=" background-color: rgba(255, 255, 255, 0); font-family: cursive; position: fixed; width: 100% ;z-index: 1; "
+    <nav
+      style=" background-color: rgba(255, 255, 255, 0); font-family: cursive; position: fixed; width: 100% ;z-index: 1; "
       class="navbar navbar-expand-lg navbar-light ">
       <a style="font-weight: bolder; color: white; font-size: 40px;" class="navbar-brand" href="#">Travelix</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
@@ -80,32 +81,73 @@
 
   </div>
 
-<hr id="city">
-<h2 style="font-weight: bolder; margin-left: 200px;"></h2> 
+  <hr id="city">
+  <form action="/search" method="POST">
+    <input style="width: 20%;margin-left: 5em; border: 2px solid blue;border-radius: 4px;" type="text" id="myFilter"
+      class="form-control" name="City" placeholder="Search City">
+    
 
-  {{#each cities}}
-  <a href="/city/{{this.Name}}" >
-  <div style="margin-left: 200px; width: 300px; float: left; margin-top: 60px;" class="card  text-white">
+  
+    <input type="submit" value="submit">
+  </form>
+  <script>
+    let today = new Date();
+let tomorrow = new Date();
 
-  <img style="width: 300px; height: 200px;" class="card-img" src="/room-images/{{this._id}}.jpg" alt="Card image">
-  <div style="margin-top: 50px;  display: flex;
+tomorrow.setDate(today.getDate() + 1);
+    document.getElementById('datePicker1').valueAsDate = today;
+      document.getElementById('datePicker').valueAsDate = tomorrow;
+    function increment() {
+      document.getElementById('demoInput').stepUp();
+    }
+    function decrement() {
+      document.getElementById('demoInput').stepDown();
+    }
+  </script>
+  <h2 style="font-weight: bolder; margin-left: 200px;"></h2>
+  <div id="myItems">
+    {{#each cities}}
+
+    <div style="margin-left: 200px; width: 300px; float: left; margin-top: 60px;" class="card  text-white">
+      <a href="/city/{{this.Name}}">
+        <img style="width: 300px; height: 200px;" class="card-img" src="/room-images/{{this._id}}.jpg" alt="Card image">
+        <div style="margin-top: 50px;  display: flex;
   align-items: center;" class="card-img-overlay">
-    <h2 style="font-weight: bolder; font-family: Comic Sans MS;" class="card-title"><i>{{this.Name}}</i></h1>
-   
-  </div>
-</div>
-  </a>
+          <h2 style="font-weight: bolder; font-family: Comic Sans MS;" class="card-title"><i>{{this.Name}}</i></h1>
 
-  {{/each}}
+        </div>
+    </div>
+    </a>
+
+    {{/each}}
+  </div>
+
 </div>
 <script>
   $(window).scroll(function () {
-if ($(window).scrollTop() >= 50) {
-$('.navbar').css('background','#111');
-} else {
-$('.navbar').css('background','transparent');
-}
-});
+    if ($(window).scrollTop() >= 50) {
+      $('.navbar').css('background', '#111');
+    } else {
+      $('.navbar').css('background', 'transparent');
+    }
+  });
+
+  function myFunction() {
+    var input, filter, cards, cardContainer, h5, title, i;
+    input = document.getElementById("myFilter");
+    filter = input.value.toUpperCase();
+    cardContainer = document.getElementById("myItems");
+    cards = cardContainer.getElementsByClassName("card");
+    for (i = 0; i < cards.length; i++) {
+      title = cards[i].querySelector(" h2.card-title");
+      if (title.innerText.toUpperCase().indexOf(filter) > -1) {
+        cards[i].style.display = "";
+      } else {
+        cards[i].style.display = "none";
+      }
+    }
+  }
+
 </script>
 <style>
   a {

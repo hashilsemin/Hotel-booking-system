@@ -89,7 +89,30 @@
             <p style="font-weight: bold;" class="card-text">Nearby Atrractions : {{hotel.Nearby}} 
             <p style="font-weight: bold;" class="card-text">Public transport : {{hotel.Transport}} 
 <hr>
+
+  
+  
+
 <h2 style="color: rgb(255, 255, 255); font-weight: bold;">Availble rooms</h2>
+{{!-- <form action="/availableRooms" method="POST">   
+<input id="datePicker1" type="date" name="checkIn">
+    <input id="datePicker" type="date" name="checkOut">
+    <input type="submit" value="submit" >
+  </form>
+    <script>
+    let today = new Date();
+let tomorrow = new Date();
+
+tomorrow.setDate(today.getDate() + 1);
+    document.getElementById('datePicker1').valueAsDate = today;
+      document.getElementById('datePicker').valueAsDate = tomorrow;
+    function increment() {
+      document.getElementById('demoInput').stepUp();
+    }
+    function decrement() {
+      document.getElementById('demoInput').stepDown();
+    }
+  </script> --}}
   {{#each rooms}}
        
         <div style="background-color: rgb(240, 240, 240);  border-radius: 25px;margin-left: 50px;  margin-top: 30px; width: 900px; " class="card1  flex-row flex-wrap">
@@ -99,8 +122,12 @@
             <div style="margin-left: 25px; margin-top: 20px; overflow:hidden; min-height:100px" class="card-block px-2">
                 <h4 style="font-weight: bold; " class="card-title"><span style="color: gray;">Room type:  </span>{{this.Type}}</h4>
                 <p style="font-weight: bold;" class="card-text">{{this.Description}}</p>
-                 <p style="font-weight: bold; font-size: xx-large;" class="card-price"><span style="font-size: medium;">INR :</span> {{this.Price}} <span>&#8377;</span></p>
+        <a href="/bookroom/{{this._id}}" class="btn btn-primary btn-lg">Book this Room</a>
+                
+          
+                <p style="font-weight: bold; font-size: xx-large;" class="card-price"><span style="font-size: medium;">INR :</span> {{this.Price}} <span>&#8377;</span></p>
                 <h4 style="font-size:medium;" class="card-title"><span style="color: gray; font-size: large;">Amenities : </span>
+                
                     {{#if AC}}Air conditioner <i class="fa fa-thermometer-empty" style="font-size:20px"></i> &nbsp;  {{/if}}
            {{#if Freewifi}}Free wifi <i class="fa fa-wifi" style="font-size:20px"></i>  &nbsp;   {{/if}}
              {{#if Heater}}Heater <i class="fa fa-tint" style="font-size:20px"></i>   {{/if}}
@@ -119,7 +146,9 @@
                                        {{#if Balcony}}Balcony <i class="fa fa-binoculars" style="font-size:20px"></i> &nbsp;   {{/if}}
                 </h4>
 
-             
+               {{!-- <button type="button" onclick="increment()">+</button>
+    <input name="quantity" id=demoInput type=number min=1 max=3>
+    <button type="button"  onclick="decrement()">-</button> --}}
             </div>
             <div class="w-100"></div>
 
@@ -136,6 +165,12 @@
 
 </div>
 <script>
+  function increment() {
+      document.getElementById('demoInput').stepUp();
+    }
+    function decrement() {
+      document.getElementById('demoInput').stepDown();
+    }
   $(window).scroll(function () {
 if ($(window).scrollTop() >= 50) {
 $('.navbar').css('background','#111');
