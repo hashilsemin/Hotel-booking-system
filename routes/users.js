@@ -16,7 +16,11 @@ const isLoggedIn = (req, res, next) => {
 const verifyuserLogin=(req,res,next)=>{
   if(req.session.userLoggedIn){
     next()
-  }else{
+  }
+  else if(req.user){
+    next();
+  }
+  else{
     res.redirect('/userLogin') 
   }
 }
@@ -26,6 +30,7 @@ router.get('/',async(req, res)=> {
   let gUser=req.user
   let user=req.session.user
   if(gUser){
+   
     let cities=await adminHelpers.getCities()
     let gMail=req.user.emails[0].value
  let gName=req.user.displayName
@@ -56,6 +61,7 @@ router.get('/google/callback', passport.authenticate('google', { failureRedirect
 );
 
 router.get('/googleLogout', (req, res) => {
+  let gUserLogged=false;
   req.session.destroy()
   req.logout();
   res.redirect('/');
@@ -156,22 +162,58 @@ router.post('/search', (req, res) => {
     
  
  })
- router.get('/bookroom/:id', async(req, res) => {
+ router.get('/bookroom/:id',verifyuserLogin, async(req, res) => {
   let room = req.params.id
   let user=req.session.user
   console.log(user);
-  
-  let rooms=await userHelpers.bookRoom(room)
- console.log(rooms);
- res.render('user/bookroom',{rooms,user})
+  let gUser=req.user
+  if(gUser){
+    let gMail=req.user.emails[0].value
+    let gName=req.user.displayName
+    let rooms=await userHelpers.bookRoom(room)
+    console.log(rooms);
+    res.render('user/bookroom',{rooms,user,gMail,gName})
+  }else{
+    let rooms=await userHelpers.bookRoom(room)
+    console.log(rooms);
+    res.render('user/bookroom',{rooms,user})
+  }
+
+
+ 
+ 
+
    
 
 }) 
 router.post('/booked',async(req,res)=>{
 userHelpers.addBooking(req.body).then(()=>{
-  res.redirect('/')
+  res.render('user/roomBooked')
 })
   console.log(req.body);
+})
+
+router.get('/booking', async (req, res) => {
+  
+
+
+let gUser=req.user
+
+
+if(gUser){
+  let gMail=req.user.emails[0].value
+  let gName=req.user.displayName
+  let bookings = await userHelpers.getBooking(gMail)
+  console.log(bookings);
+    res.render('user/bookedroom', { bookings })
+}else{
+ 
+  let userEmail=req.session.user.Email
+
+  let bookings = await userHelpers.getBooking(userEmail)
+  console.log(bookings);
+    res.render('user/bookedroom', { bookings })
+}
 })
 
 

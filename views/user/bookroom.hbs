@@ -1,11 +1,87 @@
+ <nav style=" background-color: rgba(255, 255, 255, 0); font-family: cursive; position: fixed; width: 100% ;z-index: 1; "
+      class="navbar navbar-expand-lg navbar-light ">
+      <a style="font-weight: bolder; color: white; font-size: 40px;" class="navbar-brand" href="/">Travelix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a style="color: white; margin-left: 30px  ;" class="nav-link" href="#city"> <span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a style="color: white;" class="nav-link" href="#"></a>
+          </li>
+          <div style="margin-left: 740px; ">
+            <li class="nav-item dropdown">
+
+              {{#if gUser1}}
+
+
+              <a style="color: white; font-size: x-large; " class="nav-link dropdown-toggle " href="#"
+                id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{name}}
+                <img class="rounded-circle" src="{{pic}}" width="45" height="45" alt="">
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 250px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+
+
+                  <a class="dropdown-item" href="/googleLogout">Logout</a>
+                  <hr>
+                  <a class="dropdown-item" href="">Recent bookings</a>
+                </div>
+                {{else if user1}}
+                <a style="color: white; font-size: x-large;" class="nav-link dropdown-toggle " href="#"
+                  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{userName.Name}}
+                </a>
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                  <a class="dropdown-item" href="/updateProfile/{{user._id}}">Update profile</a>
+                  <hr>
+                  <a class="dropdown-item" href="/userLogout">Logout</a>
+                  <hr>
+                  <a class="dropdown-item" href="">Recent bookings</a>
+                </div>
+                {{else}}
+                {{!-- <a style="color: white;" class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  LOGIN/SIGNUP
+                </a> --}}
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                  <a class="dropdown-item" href="/userLogin">User</a>
+                  <hr>
+                  <a class="dropdown-item" href="/hotel/Login">Hotel</a>
+                  <hr>
+                  <a class="dropdown-item" href="/admin/Login">Admin</a>
+                </div>
+                {{/if}}
+
+
+            </li>
+          </div>
+        </ul>
+        <hr>
+      </div>
+
+    </nav>
 <div class="card flex-row flex-wrap"
-  style=" height: 700px;   box-shadow: 0px 0px  30px grey; background-color:rgb(0, 156, 177); ;">
+  style=" height: 700px; margin-top:   box-shadow: 0px 0px  30px grey; background-color:rgb(0, 156, 177); ;">
   <div class="card-header border-0">
-    <img style="width: 600px ;height: 350px; margin-left: 50px; margin-top: 40px;" src="/room-images/{{rooms._id}}.jpg"
+    <img style="width: 600px ;height: 350px; margin-left: 50px; margin-top: 100px;" src="/room-images/{{rooms._id}}.jpg"
       alt="">
   </div>
 
-  <div class="card-block px-2" style="margin-left: 50px; color: white; font-weight: bolder;">
+  <div class="card-block px-2" style="margin-top: 60px; margin-left: 50px; color: white; font-weight: bolder;">
 
     <h1 style="margin-top: 40px;font-weight: bold ; color: white;" class="card-title">{{rooms.Type}}</h1>
     <p style="font-weight: bold; font-size: xx-large; color: white;" class="card-price"><span
@@ -13,8 +89,19 @@
 
     <form action="/booked" method="POST">
       <input type="hidden" name="ID" value="{{user._id}}">
-      <input type="hidden" name="Email" value="{{user.Email}}">
-      <input type="hidden" name="Mobile" value="{{user.Mobile}}">
+     
+       {{#if gMail}}
+Mobile &nbsp &nbsp :
+<input type="text" style="margin-bottom: 15px;" name="Mobile" placeholder="mobile number"><br>
+{{else if user}}
+ <input type="hidden" name="Mobile" value="{{user.Mobile}}">
+      {{/if}}
+      <input type="hidden" name="Email" value="{{user.Email}}{{gMail}}">
+        <input type="hidden" name="hotelId" value="{{rooms.hotelId}}">
+          <input type="hidden" name="hotelName" value="{{rooms.hotelName}}">
+          <input type="hidden" name="Type" value="{{rooms.Type}}">
+            <input type="hidden" name="Price" value="{{rooms.Price}}">
+     
       Check in : <input id="datePicker1" type="date" name="checkIn"><br>
       Checkout: <input id="datePicker" type="date" name="checkOut" style="margin-top: 20px;"><br>
       <div style="padding: 5px ;margin-top: 10px;  ">
@@ -22,12 +109,12 @@
         <div style="float:left ;margin-left: 10px;"><button type="button" id="subtract"> - 1</button></div>
 
         <div style="float:left;margin-left: 10px;"> <input name="Guest" style="width: 30px;" type="text" id="w" readonly></div>
-     
+ 
         {{!-- <script>      $('#counter').change(function () {
             $('#Room').val($(this).val());
           });</script> --}}
         <div style="margin-left: 170px;"><button type="button" id="add"> + 1</button></div>
-      </div>
+      </div>    <p style="margin-left: 90px; color: red;">For every 4th guest a room is added</p>
       <div style="float: left; margin-top: 10px;">Room(s) :</div>
       <div style="margin-left: 100px; margin-top: 10px;"><input name="Room" style="width: 30px;" type="text" id="q" readonly></div>
       <input style="margin-top: 20px; border-radius: 10px; " class="btn btn-success  btn-lg" type="submit"
@@ -56,7 +143,7 @@ var w=1
       $("#add").click(function () {
         if (w % 3 == 0) {
           q = q + 1;
-          alert("Added another Room")
+          alert("A room is added")
           // Display total
          document.getElementById("q").value = q;
         }

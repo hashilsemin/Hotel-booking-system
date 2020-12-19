@@ -68,7 +68,7 @@ module.exports = {
                 service: 'gmail',
                 auth: {
                   user: 'hashilsemin2@gmail.com',
-                  pass: 'Naseehaanwar10'
+                  pass: ''
                 }
               });
               var mailOptions = {

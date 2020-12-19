@@ -142,4 +142,17 @@ addBooking: (bookingData) => {
     })
 
 },
+
+
+
+getBooking: (Email) => {
+    return new Promise(async (resolve, reject) => {
+       let booking= await db.get().collection(collection.BOOKING_COLLECTION).find({ Email: Email}).toArray()
+            
+       resolve(booking)
+
+    
+
+    })
+},
 }
