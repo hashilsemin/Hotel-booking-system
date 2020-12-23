@@ -101,7 +101,13 @@ Mobile &nbsp &nbsp :
           <input type="hidden" name="hotelName" value="{{rooms.hotelName}}">
           <input type="hidden" name="Type" value="{{rooms.Type}}">
             <input type="hidden" name="Price" value="{{rooms.Price}}">
-     
+             <input type="hidden" name="canCancel" value="">
+           
+
+  <script>
+
+       
+  </script>
       Check in : <input id="datePicker1" type="date" name="checkIn"><br>
       Checkout: <input id="datePicker" type="date" name="checkOut" style="margin-top: 20px;"><br>
       <div style="padding: 5px ;margin-top: 10px;  ">
@@ -117,12 +123,15 @@ Mobile &nbsp &nbsp :
       </div>    <p style="margin-left: 90px; color: red;">For every 4th guest a room is added</p>
       <div style="float: left; margin-top: 10px;">Room(s) :</div>
       <div style="margin-left: 100px; margin-top: 10px;"><input name="Room" style="width: 30px;" type="text" id="q" readonly></div>
-      <input style="margin-top: 20px; border-radius: 10px; " class="btn btn-success  btn-lg" type="submit"
+      <input style="margin-top: 20px; border-radius: 10px; " id="btn" class="btn btn-success  btn-lg" type="submit"
         value="Let's Book It">
     </form>
 
     <script>
-      
+    
+  
+  
+
 document.getElementById("w").value = "1";
 var w=1
   document.getElementById("w").value = w;

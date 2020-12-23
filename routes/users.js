@@ -5,6 +5,8 @@ const adminHelpers = require('../helpers/admin-helpers')
 const userHelpers = require('../helpers/user-helpers')
 const nodemailer = require("nodemailer");
 const passport = require('passport');
+var moment = require('moment'); // require
+moment().format(); 
 require('../helpers/passport-setup')
 const isLoggedIn = (req, res, next) => {
   if (req.user) {
@@ -47,7 +49,9 @@ router.get('/',async(req, res)=> {
   
     let cities=await adminHelpers.getCities()
 
+
     res.render('user/homepage',{cities})
+    
   }
   
 })
@@ -187,7 +191,14 @@ router.post('/search', (req, res) => {
 
 }) 
 router.post('/booked',async(req,res)=>{
-userHelpers.addBooking(req.body).then(()=>{
+  var bookTime = new Date().toISOString()
+  // console.log(a);
+  //     var b = moment('2020-12-21T01:23:55');
+      
+  //     console.log(a.diff(b, 'minutes')) 
+ req.body.Time=bookTime
+console.log(req.body)
+userHelpers.addBooking(req.body,bookTime).then(()=>{
   res.render('user/roomBooked')
 })
   console.log(req.body);
@@ -209,11 +220,19 @@ if(gUser){
 }else{
  
   let userEmail=req.session.user.Email
-
-  let bookings = await userHelpers.getBooking(userEmail)
+  var currentTime = moment(new Date()).format('DD MM YYYY hh:mm:ss');
+  let bookings = await userHelpers.getBooking(userEmail,currentTime)
   console.log(bookings);
+
+
     res.render('user/bookedroom', { bookings })
 }
+})
+router.get('/cancelBooking/:id',async(req,res)=>{
+let bookingId=req.params.id
+userHelpers.cancelBooking(bookingId).then(()=>{
+  res.redirect('/booking')
+})
 })
 
 

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const adminHelpers = require('../helpers/admin-helpers')
+const userHelpers = require('../helpers/user-helpers')
 const verifyAdminLogin = (req, res, next) => {
   if (req.session.adminLoggedIn) {
     next()
@@ -137,5 +138,18 @@ router.get('/delete-city/:id', (req, res) => {
     res.redirect('/admin/cities')
   })
 })
+router.get('/booking', verifyAdminLogin, async (req, res) => {
+  admin = req.session.admin
+  let booking = await adminHelpers.getBooking()
+console.log(booking);
+
+  res.render('admin/booking', { booking})
+})
+router.get('/cancelBooking/:id',async(req,res)=>{
+  let bookingId=req.params.id
+  userHelpers.cancelBooking(bookingId).then(()=>{
+    res.redirect('/admin/booking')
+  })
+  })
 
 module.exports = router;

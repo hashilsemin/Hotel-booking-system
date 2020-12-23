@@ -129,7 +129,7 @@ bookRoom: (roomId) => {
 
 },
 
-addBooking: (bookingData) => {
+addBooking: (bookingData,bookTime) => {
 
     return new Promise(async (resolve, reject) => {
     
@@ -139,20 +139,53 @@ addBooking: (bookingData) => {
 
            resolve()
         })
+        
     })
 
 },
 
 
 
-getBooking: (Email) => {
+getBooking: (Email,currentTime) => {
     return new Promise(async (resolve, reject) => {
-       let booking= await db.get().collection(collection.BOOKING_COLLECTION).find({ Email: Email}).toArray()
+
+       await db.get().collection(collection.BOOKING_COLLECTION).updateMany({},
+        
+        { $set: {canCancel:"" } }
+        ).then(async()=>{
+
+          await  db.get().collection(collection.BOOKING_COLLECTION).updateMany({"Time" : {  $gte: new Date(new Date().getTime()-60*1*1000).toISOString() }},
+        
+            { $set: {
+                canCancel:"yes" 
+            } }
+            )
+        }).then(async()=>{
+
+            let booking= await db.get().collection(collection.BOOKING_COLLECTION).find({ Email: Email}).toArray()
             
-       resolve(booking)
+            resolve(booking)
+        })
+
+
+        
+// db.getCollection('booking').find({"Time" : { $gte: new Date().toISOString() }});
+
 
     
 
     })
 },
+
+cancelBooking:(bookingId)=>{
+    return new Promise((resolve,reject)=>{
+        
+        
+        db.get().collection(collection.BOOKING_COLLECTION).removeOne({_id:objectId(bookingId)}).then((response)=>{
+            //console.log(response)
+            resolve(response)
+        })
+    })
+},
+
 }

@@ -12,7 +12,8 @@ var fileUpload=require('express-fileupload')
 var db=require('./config/connection')
 var session = require('express-session')
 const passport = require('passport');
-
+var moment = require('moment'); // require
+moment().format(); 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 

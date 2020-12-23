@@ -184,4 +184,13 @@ module.exports = {
             })
         })
     },
+  
+    getBooking: () => {
+        return new Promise(async (resolve, reject) => {
+            let booking = await db.get().collection(collection.BOOKING_COLLECTION).find({}).toArray()
+            resolve(booking)
+        })
+
+    },
+
 }
