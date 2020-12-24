@@ -187,5 +187,45 @@ cancelBooking:(bookingId)=>{
         })
     })
 },
+changestatus:(details)=>{
+    return new Promise(async(resolve,reject)=>{
+       let id=details.user
+        if(details.status=="check in"){
+console.log(id);
+
+         db.get().collection(collection.BOOKING_COLLECTION).updateOne({_id:objectId(id)},
+            {
+                $set:{
+                    Status:"Check in"
+                }
+            })
+                resolve() 
+          
+            
+                
+          
+            
+        }else{
+         db.get().collection(collection.BOOKING_COLLECTION).updateOne({_id:objectId(details.user)},
+            {
+                $set:{
+                    Status:"Check out"
+                }
+            })
+                resolve()
+          
+          
+        }
+    })
+},
+getStatus:(details)=>{
+
+return new Promise(async(resolve,reject)=>{
+   let Status=await db.get().collection(collection.BOOKING_COLLECTION).findOne({_id:objectId(details.user)})
+   resolve(Status)
+})
+},
+
+
 
 }

@@ -45,8 +45,34 @@
             <p class="card-text">{{Type}}</p>
               <p class="card-text"> Guest:{{Guest}}</p>
                 <p class="card-text">check in :{{checkIn}}</p>
+                <p class="card-text">check out :{{checkOut}}</p>
+                  <p class="card-text">Status :<span id="status" >{{Status}}</span></p>
+                 <button class="btn btn-success"  onclick="changeQuantity('{{_id}}','check in')">I have checked in</button>
+                       
+                         <button class="btn btn-danger"  onclick="changeQuantity('{{_id}}','check out')">I have checked Out</button>
+                   
+<script>
+    function changeQuantity(userId,status){
+       
+        $.ajax({
+            url:'/change-status',
+            data:{
+                user:userId,
+               status:status
+            },
+            method:'post',
+            success:(response)=>{
+           
+               document.getElementById('status').innerHTML=response.Status
+                    
+                    
+                }
                 
-<p class="card-text">check out :{{checkOut}}</p>
+            
+        })
+
+    }
+</script>
 {{#if canCancel}}
                 <a href="/cancelBooking/{{_id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel {{Type}} ? ')" >Cancel your booking
                 </a>

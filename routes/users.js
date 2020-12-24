@@ -234,6 +234,19 @@ userHelpers.cancelBooking(bookingId).then(()=>{
   res.redirect('/booking')
 })
 })
+router.post('/change-status',async(req,res)=>{
+  console.log(req.body);
+  userHelpers.changestatus(req.body).then(async(response)=>{
+  
+     response=await userHelpers.getStatus(req.body)
+    console.log(response);
+      res.json(response)
+    
+    
+  
+    
+  })
+})
 
 
 module.exports = router; 
