@@ -247,6 +247,40 @@ router.post('/change-status',async(req,res)=>{
     
   })
 })
+router.get('/payment', async (req, res) => {
+  
 
+
+  let gUser=req.user
+  
+  
+  if(gUser){
+    let gMail=req.user.emails[0].value
+    
+    let payment = await userHelpers.getPayment(gMail)
+    console.log(payment);
+    res.render('user/payment', { payment })
+  }else{
+   
+    let userEmail=req.session.user.Email
+ 
+    let payment = await userHelpers.getPayment(userEmail)
+    console.log(payment);
+  
+  
+      res.render('user/payment', { payment })
+  }
+  })
+
+
+router.get('/doPayment/:id', async (req, res) => {
+  
+  let bookingId=req.params.id
+  
+  userHelpers.doPayment(bookingId).then(() => {
+    
+    res.redirect('/')
+  })
+  })
 
 module.exports = router; 

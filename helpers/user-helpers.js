@@ -228,4 +228,32 @@ return new Promise(async(resolve,reject)=>{
 
 
 
+
+
+getPayment: (Email) => {
+    return new Promise(async (resolve, reject) => {
+
+        let payment= await db.get().collection(collection.BOOKING_COLLECTION).find({ $and:[{ Reason: { $exists: true}},{Email:Email}] }).toArray()
+     
+            resolve(payment)
+ } )
+        },
+    
+    
+  
+    doPayment: (bookingId) => {
+        return new Promise(async (resolve, reject) => {
+ db.get().collection(collection.BOOKING_COLLECTION).updateOne({ _id: objectId(bookingId)},
+ {
+     $unset:{
+         Reason:"",
+         additionalCharge:""
+     }
+ }
+ 
+ )
+                
+                resolve()
+            })
+        },
 }

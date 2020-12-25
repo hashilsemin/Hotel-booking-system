@@ -1,0 +1,153 @@
+<div class="container1" >
+  <nav style=" background-color: rgba(255, 255, 255, 0); font-family: cursive; position: fixed; width: 100% ;z-index: 1; "
+      class="navbar navbar-expand-lg navbar-light ">
+      <a style="font-weight: bolder; color: white; font-size: 40px;" class="navbar-brand" href="/">Travelix</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a style="color: white; margin-left: 30px  ;" class="nav-link" href="#city"> <span
+                class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a style="color: white;" class="nav-link" href="#"></a>
+          </li>
+          <div style="margin-left: 740px; ">
+            <li class="nav-item dropdown">
+
+              {{#if gUser}}
+
+
+              <a style="color: white; font-size: x-large; " class="nav-link dropdown-toggle " href="#"
+                id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{name}}
+                <img class="rounded-circle" src="{{pic}}" width="45" height="45" alt="">
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 250px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+
+
+                  <a class="dropdown-item" href="/googleLogout">Logout</a>
+                  <hr>
+                  <a class="dropdown-item" href="">Recent bookings</a>
+                </div>
+                {{else if user}}
+                <a style="color: white; font-size: x-large;" class="nav-link dropdown-toggle " href="#"
+                  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{userName.Name}}
+                </a>
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                  <a class="dropdown-item" href="/updateProfile/{{user._id}}">Update profile</a>
+                  <hr>
+                  <a class="dropdown-item" href="/userLogout">Logout</a>
+                  <hr>
+                  <a class="dropdown-item" href="">Recent bookings</a>
+                </div>
+                {{else}}
+                {{!-- <a style="color: white;" class="nav-link dropdown-toggle " href="#" id="navbarDropdownMenuLink"
+                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  LOGIN/SIGNUP
+                </a> --}}
+                <div
+                  style=" background-color:#22def78e; width:240px ; height: 180px; padding: 10px; margin-left: -100px;"
+                  class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                  <a class="dropdown-item" href="/userLogin">User</a>
+                  <hr>
+                  <a class="dropdown-item" href="/hotel/Login">Hotel</a>
+                  <hr>
+                  <a class="dropdown-item" href="/admin/Login">Admin</a>
+                </div>
+                {{/if}}
+
+
+            </li>
+          </div>
+        </ul>
+        <hr>
+      </div>
+
+    </nav>
+    <div class="row">
+              <div class="card flex-row flex-wrap" style=" height: 1000px; width: 100%;  box-shadow: 0px 0px  30px grey; background-color:rgb(0, 156, 177); ;">
+            <div class="card-header border-0">
+           </div><hr>
+            <div class="card-block px-2" style="margin-left: 50px; margin-top: 50px;"><hr>
+   
+  
+  
+
+
+       {{#each payment}}
+        <div style="background-color: rgb(240, 240, 240);  border-radius: 25px;margin-left: 50px;  margin-top: 30px; width: 900px; " class="card1  flex-row flex-wrap">
+            <div class="card-header border-0">
+                <img src="/room-images/{{this._id}}.jpg" width="310px" alt="">
+            </div>
+            <div style="margin-left: 25px; margin-top: 20px; overflow:hidden; min-height:100px" class="card-block px-2">
+                <h4 style="font-weight: bold; " class="card-title"><span style="color: gray;">Hotel:  </span>{{this.hotelName}}</h4>
+                <p style="font-weight: bold;" class="card-text">{{this.Reason}}</p>
+  
+                
+          
+                <p style="font-weight: bold; font-size: xx-large;" class="card-price"><span style="font-size: medium;">Payment :</span> {{this.additionalCharge}} <span>&#8377;</span></p>
+            
+ <a href="/doPayment/{{this._id}}" class="btn btn-primary btn-lg mb-2">Pay amount</a>
+                
+               {{!-- <button type="button" onclick="increment()">+</button>
+    <input name="quantity" id=demoInput type=number min=1 max=3>
+    <button type="button"  onclick="decrement()">-</button> --}}
+            </div>
+            <div class="w-100"></div>
+
+        </div>
+     {{/each}}
+   
+            </div>
+            <div class="w-100"></div>
+
+        </div>
+    </div>
+
+
+
+</div>
+<script>
+  function increment() {
+      document.getElementById('demoInput').stepUp();
+    }
+    function decrement() {
+      document.getElementById('demoInput').stepDown();
+    }
+  $(window).scroll(function () {
+if ($(window).scrollTop() >= 50) {
+$('.navbar').css('background','#111');
+} else {
+$('.navbar').css('background','transparent');
+}
+});
+</script>
+<style>
+  .card1:hover{
+      transition: 0.3s;
+    background-color: rgb(5, 3, 3);
+  }
+  .zoom {
+ 
+  
+  transition: transform .2s; /* Animation */
+
+
+  margin: 0 auto;
+}
+.zoom:hover {
+  transform: scale(1.1);
+  background-color: white; /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+</style>

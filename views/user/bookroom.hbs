@@ -95,6 +95,7 @@ Mobile &nbsp &nbsp :
 <input type="text" style="margin-bottom: 15px;" name="Mobile" placeholder="mobile number"><br>
 {{else if user}}
  <input type="hidden" name="Mobile" value="{{user.Mobile}}">
+  <input type="hidden" name="Name" value="{{user.Name}}">
       {{/if}}
       <input type="hidden" name="Email" value="{{user.Email}}{{gMail}}">
         <input type="hidden" name="hotelId" value="{{rooms.hotelId}}">

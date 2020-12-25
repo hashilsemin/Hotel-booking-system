@@ -148,3 +148,28 @@ console.log(req.body);
   })
   })
 })
+
+router.get('/customer', async (req, res) => {
+  let hotelData=req.session.hotel
+console.log(hotelData);
+ let customer=await hotelHelpers.getCustomer(hotelData)
+console.log(customer);
+
+  res.render('hotel/customer',{customer})
+})
+
+router.get('/addPayment/:id', async (req, res) => {
+  
+let bookingId=req.params.id
+
+  res.render('hotel/payment',{bookingId})
+})
+
+router.post('/addPayment', (req, res) => {
+  console.log(req.body);
+  hotelHelpers.addPayment(req.body).then((response) => {
+    
+    res.redirect('/hotel/customer')
+  })
+})
+

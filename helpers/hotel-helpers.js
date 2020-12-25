@@ -160,4 +160,36 @@ module.exports = {
         })
 
     },
+  
+ 
+    getCustomer: (hotelId) => {
+        return new Promise(async (resolve, reject) => {
+           let customer= db.get().collection(collection.BOOKING_COLLECTION).find({ hotelId: hotelId._id }).toArray()
+                resolve(customer)
+
+            })
+
+    },
+
+     
+    addPayment: (paymentData) => {
+
+        return new Promise(async (resolve, reject) => {
+       
+            db.get().collection(collection.BOOKING_COLLECTION).updateOne({ _id: objectId(paymentData.ID) },
+                {
+                    $set: {
+                        additionalCharge:paymentData.Price,
+                        Reason:paymentData.Reason
+                  
+                    }
+                }
+            ).then(() => {
+
+
+                resolve()
+            })
+        })
+    
+    },
 }

@@ -1,0 +1,158 @@
+<div style=" height: 800px; padding: 1px; background-color: rgb(235, 235, 235)">
+    <div class="sidenav">
+        <h1
+            style="color: bla ck; font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; margin-left: 10px; margin-top: 5px;">
+            TRAVELIX</h1>
+
+        {{#if hotelName}}
+        <span style="margin-left: 10px; font-weight: bolder;">Welcome {{hotelName.Name}}</span>
+        {{/if}}
+        <hr>
+        <div class="option">
+            <a style="margin-top: 51px;" href="/hotel">Home</a>
+            <hr color="white">
+            <a href="/hotel/rooms">Rooms</a>
+            <hr color="white">
+            <a href="/hotel/customer">Customer</a>
+            <hr color="white">
+            <a href="#clients">Features</a>
+            <hr color="white">
+            {{#if hotel}}
+            <a href="/hotel/updateProfile/{{hotel._id}}">Update profile</a>
+            <hr color="white"> {{/if}}
+        </div>
+        <a style="color: rgb(0, 0, 0);" href='/hotel/logout'>Logout</a>
+        <hr color="white">
+
+    </div>
+
+
+    <div class="main">
+        <section>
+            <div class="container">
+                <div class="row">
+
+                </div>
+                <div style="margin-top: 50px;">
+                    <table class="table mt-4" id="productsTable">
+                        <thead>
+                            <tr>
+                            
+                                <th scope="col">Room type</th>
+                                <th scope="col">N.o of room</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Check in</th>
+                                <th scope="col">check Out</th>
+
+
+
+                                <th scope="col">Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each customer}}
+                            <tr>
+                             
+                                <td>{{this.Type}}</td>
+                                <td>{{this.Room}}</td>
+                                <td>{{this.Mobile}}</td>
+                                <td>{{this.Name}}</td>
+
+
+
+                                <td>{{this.Status}}</td>
+
+                                <td>{{this.checkIn}}</td>
+                                <td>{{this.checkOut}}</td>
+                                <td>
+
+                                
+                                    <a href="/hotel/addPayment/{{this._id}}" class="btn btn-success">Add payment</a>
+
+                                </td>
+
+                            </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </div>
+    <style>
+        .zoom {
+
+            transition: transform .2s;
+            /* Animation */
+
+        }
+
+        .zoom:hover {
+            transform: scale(1.1);
+            /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        }
+
+        .option:hover li:hover a {
+            opacity: 0.6;
+        }
+
+        .option:hover li:hover a:hover {
+            opacity: 1;
+        }
+
+
+        .card :hover {
+            background-color: #ff4e4e;
+
+        }
+
+        .main {
+
+            margin-left: 260px;
+            margin-top: 50px;
+
+        }
+
+        .sidenav {
+
+            height: 100%;
+            width: 260px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #ff4e4e;
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+        .sidenav a {
+
+            padding: 1px 12px 1px;
+            text-decoration: none;
+            font-size: 18px;
+            color: black;
+            display: block;
+        }
+
+        .sidenav a:hover {
+            color: white;
+
+        }
+
+
+
+
+
+        @media screen and (max-height: 450px) {
+            .sidenav {
+                padding-top: 15px;
+            }
+
+            .sidenav a {
+                font-size: 18px;
+            }
+        }
+    </style>
