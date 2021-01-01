@@ -124,7 +124,8 @@ tomorrow.setDate(today.getDate() + 1);
                 <p style="font-weight: bold;" class="card-text">{{this.Description}}</p>
         <a href="/bookroom/{{this._id}}" class="btn btn-primary btn-lg">Book this Room</a>
                 
-          
+              <a href="/bookroomWallet/{{this._id}}" class="btn btn-success  btn-lg">Use wallet money</a>
+         
                 <p style="font-weight: bold; font-size: xx-large;" class="card-price"><span style="font-size: medium;">INR :</span> {{this.Price}} <span>&#8377;</span></p>
                 <h4 style="font-size:medium;" class="card-title"><span style="color: gray; font-size: large;">Amenities : </span>
                 
@@ -153,9 +154,43 @@ tomorrow.setDate(today.getDate() + 1);
             <div class="w-100"></div>
 
         </div>
-     
-        {{/each}}
+       
+        {{/each}}<div >
+            <h2 style="color: rgb(255, 255, 255); font-weight: bold;">Reviews and Ratings</h2>
+           {{#each reviews}}
+           <div style="background-color: rgb(240, 240, 240);  border-radius: 25px;margin-left: 50px;  margin-top: 30px; width: 900px; " class="card1  flex-row flex-wrap">
+            <div class="card-header border-0">
+              Rating out of 5:
+              {{#if rate1}}
+             <i class="fas fa-star"></i>
+              {{/if}}
+               {{#if rate2}}
+            <i class="fas fa-star"></i><i class="fas fa-star"></i>
+              {{/if}}
+               {{#if rate3}}
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              {{/if}}
+               {{#if rate4}}
+           <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              {{/if}}
+               {{#if rate5}}
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+              {{/if}}
+
             </div>
+            <div style="margin-left: 25px; margin-top: 20px; overflow:hidden; min-height:100px" class="card-block px-2">
+                <h4 style="font-weight: bold; " class="card-title"><span style="color: gray;">By:  </span>{{this.username}}</h4>
+                <p style="font-weight: bold;" class="card-text">{{this.Reason}}</p>
+  
+                
+       
+            </div>
+            <div class="w-100"></div>
+
+        </div>
+{{/each}}
+
+          
             <div class="w-100"></div>
 
         </div>

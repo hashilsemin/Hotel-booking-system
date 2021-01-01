@@ -151,5 +151,17 @@ router.get('/cancelBooking/:id',async(req,res)=>{
     res.redirect('/admin/booking')
   })
   })
+  router.get('/ratings',async(req,res)=>{
 
+   let rating=await adminHelpers.getRatings()
+console.log(rating);
+      res.render('admin/ratings',{rating})
+    })
+    router.get('/deleterating/:id',async(req,res)=>{
+      let bookingId=req.params.id
+      adminHelpers.cancelRating(bookingId).then(()=>{
+        res.redirect('/admin/ratings')
+      })
+      })
+   
 module.exports = router;

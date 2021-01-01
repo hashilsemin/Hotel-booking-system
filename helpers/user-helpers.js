@@ -3,7 +3,11 @@ var collection = require('../config/collection')
 const bcrypt = require('bcrypt')
 const { response } = require('express')
 var objectId = require('mongodb').ObjectID
-
+const Razorpay=require('razorpay')
+var instance = new Razorpay({
+    key_id: 'rzp_test_4oASb9KdHLZimd',
+    key_secret: 'T7RwDK53HjUjORrTnYkJcPSJ',
+  });
 module.exports = {
     userSignup: (userData) => {
         return new Promise(async (resolve, reject) => {
@@ -129,21 +133,61 @@ bookRoom: (roomId) => {
 
 },
 
-addBooking: (bookingData,bookTime) => {
+addBooking: (bookingData,bookTime,price) => {
 
     return new Promise(async (resolve, reject) => {
     
-    
-        db.get().collection(collection.BOOKING_COLLECTION).insertOne(bookingData).then(() => {
+   
 
 
-           resolve()
+        db.get().collection(collection.BOOKING_COLLECTION).insertOne(bookingData).then((response) => {
+
+
+           resolve(response.ops[0]._id)
         })
         
     })
 
 },
 
+addWalletBooking: (bookingData,Price) => {
+
+    return new Promise(async (resolve, reject) => {
+    let wallet= await db.get().collection(collection.USER_COLLECTION).find({ Email: bookingData.Email }).toArray()
+    console.log("hiiiiiiiiiiiiiiiii");
+    let money=wallet[0].price
+   
+    console.log(money);
+ if(money>=Price){
+    db.get().collection(collection.USER_COLLECTION).updateOne( { $and: [ { Email: bookingData.Email }, { price: { $gte: Price } } ] } ,
+        {
+            $inc: {  price: -Price}
+          
+        }
+       
+).then(()=>{
+    db.get().collection(collection.BOOKING_COLLECTION).insertOne(bookingData).then((response) => {
+
+
+        resolve(response.ops[0]._id)
+     })
+   
+    resolve(money)
+})
+ }else{
+     let money=false
+     resolve(money)
+ }
+       
+
+   
+
+
+      
+        
+    })
+
+},
 
 
 getBooking: (Email,currentTime) => {
@@ -254,6 +298,88 @@ getPayment: (Email) => {
  )
                 
                 resolve()
+            })
+        },
+
+        generateRazorpay:(orderId,total)=>{
+            return new Promise((resolve,reject)=>{
+                var options = {
+                    amount: total*100,  // amount in the smallest currency unit
+                    currency: "INR",
+                    receipt:""+orderId
+                  };
+                  instance.orders.create(options, function(err, order) {
+                      if(err){
+                          console.log(err);
+                      }else{
+                  console.log(order);
+                    resolve(order)
+                      }
+                  });
+            })
+        },
+        verifyPayment:(details)=>{
+            return new Promise((resolve,reject)=>{
+                console.log(details);
+                const crypto= require('crypto')
+                let hmac=crypto.createHmac('sha256','T7RwDK53HjUjORrTnYkJcPSJ')
+                hmac.update(details['payment[razorpay_order_id]']+'|'+details['payment[razorpay_payment_id]'])
+                hmac=hmac.digest('hex')
+                if(hmac==details['payment[razorpay_signature]']){
+                    resolve()
+                }else{
+                    reject()
+                
+                }
+            })
+        },
+        changePaymentStatus:(orderId)=>{
+            console.log(orderId);
+            return new Promise((resolve,reject)=>{
+                console.log(orderId);
+                db.get().collection(collection.BOOKING_COLLECTION).updateOne({_id:objectId(orderId)},
+                {
+                    $set:{
+                       Rstatus:'placed'
+                    }
+                }).then(()=>{
+                    resolve()
+                })
+            })
+        },
+       
+        addReview: (userData) => {
+            return new Promise(async (resolve, reject) => {
+              
+                db.get().collection(collection.REVIEW_COLLECTION).insertOne(userData).then((data) => {
+                    resolve(data.ops[0])
+                })
+            }
+            )
+        },
+    
+        getReviews: (hotelName) => {
+            return new Promise(async (resolve, reject) => {
+                console.log(hotelName);
+              let review=await  db.get().collection(collection.REVIEW_COLLECTION).find({hotelName:hotelName}).toArray()
+                    resolve(review)
+    
+              
+    
+            })
+        },
+        addWallet:(mail,price)=>{
+            return new Promise(async(resolve,reject)=>{
+                console.log(price);
+                db.get().collection(collection.USER_COLLECTION).updateOne(
+                    { Email: mail },   // Query parameter
+                    {    
+                        $inc: { price: +price}
+                    
+                    },
+                  
+                 )
+                 resolve()
             })
         },
 }

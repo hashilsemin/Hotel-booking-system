@@ -5,6 +5,7 @@ module.exports={
     REGISTERED_COLLECTION:'registered',
     CITY_COLLECTION:'city',
     ROOM_COLLECTION:'rooms',
-    BOOKING_COLLECTION:'booking'
+    BOOKING_COLLECTION:'booking',
+    REVIEW_COLLECTION:'review'
 
 }

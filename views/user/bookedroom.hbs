@@ -1,5 +1,5 @@
   
-  <div class="row" style="  background-color: salmon; height: 100%;">
+  <div class="row" style="  background-color: rgb(14, 180, 221); height: 100%;">
       <div style="height: 50px;">
   <nav style="margin-top: 20px;margin-left: 30px; background-color: rgba(255,255,255,0.0); font-family: cursive;  "
     class="navbar navbar-expand-lg navbar-light ">
@@ -35,9 +35,9 @@
   </nav>
   </div>
   {{#each bookings}}
-<div class="card" style="height: 210px; margin-left: 210px; margin-top: 60px;  ">
+<div class="card" style=" margin-left: 210px; margin-top: 60px; width: 700px; height: 360px; ">
     <div class="card-horizontal">
-        <div class="img-square-wrapper">
+        <div class="img-square-wrapper" style="padding: 30px; margin-top: 30px  ;">
             <img style="width: 250px; height: 208px;" class="" src="/room-images/{{this.hotelId}}.jpg"alt="Card image cap">
         </div>
         <div class="card-body">
@@ -46,8 +46,9 @@
               <p class="card-text"> Guest:{{Guest}}</p>
                 <p class="card-text">check in :{{checkIn}}</p>
                 <p class="card-text">check out :{{checkOut}}</p>
-                  <p class="card-text">Status :<span id="status" >{{Status}}</span></p>
+                  <p class="card-text">Status :<span id="{{_id}}" >{{Status}}</span></p>
                  <button class="btn btn-success"  onclick="changeQuantity('{{_id}}','check in')">I have checked in</button>
+                <a href="/addReview/{{ID}}/{{Name}}/{{hotelName}}" class="btn btn-success">Add a review</a>
                        
                          <button class="btn btn-danger"  onclick="changeQuantity('{{_id}}','check out')">I have checked Out</button>
                    
@@ -63,7 +64,7 @@
             method:'post',
             success:(response)=>{
            
-               document.getElementById('status').innerHTML=response.Status
+               document.getElementById(userId).innerHTML=response.Status
                     
                     
                 }
@@ -74,10 +75,10 @@
     }
 </script>
 {{#if canCancel}}
-                <a href="/cancelBooking/{{_id}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to cancel {{Type}} ? ')" >Cancel your booking
+                <a href="/cancelBooking/{{_id}}/{{Email}}/{{Price}}" class="btn btn-danger mt-2" onclick="return confirm('THe amount will be refunded to your travelix wallet,Are you sure you want to cancel {{Type}} ? ')" >Cancel your booking
                 </a>
                 {{/if}}
-<hr>
+
 
         </div>
     </div>

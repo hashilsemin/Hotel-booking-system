@@ -192,5 +192,22 @@ module.exports = {
         })
 
     },
+    getRatings
+    : () => {
+        return new Promise(async (resolve, reject) => {
+            let booking = await db.get().collection(collection.REVIEW_COLLECTION).find({}).toArray()
+            resolve(booking)
+        })
 
+    },
+    cancelRating:(bookingId)=>{
+        return new Promise((resolve,reject)=>{
+            
+            
+            db.get().collection(collection.REVIEW_COLLECTION).removeOne({_id:objectId(bookingId)}).then((response)=>{
+                //console.log(response)
+                resolve(response)
+            })
+        })
+    },
 }

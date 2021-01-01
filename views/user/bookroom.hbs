@@ -75,8 +75,8 @@
 
     </nav>
 <div class="card flex-row flex-wrap"
-  style=" height: 700px; margin-top:   box-shadow: 0px 0px  30px grey; background-color:rgb(0, 156, 177); ;">
-  <div class="card-header border-0">
+  style=" height: 700px; background-color: #41B3A3;;  box-shadow: 0px 0px  30px grey;">
+  <div class="card-header border-0" style="background-color:#E27D60;">
     <img style="width: 600px ;height: 350px; margin-left: 50px; margin-top: 100px;" src="/room-images/{{rooms._id}}.jpg"
       alt="">
   </div>
@@ -85,14 +85,19 @@
 
     <h1 style="margin-top: 40px;font-weight: bold ; color: white;" class="card-title">{{rooms.Type}}</h1>
     <p style="font-weight: bold; font-size: xx-large; color: white;" class="card-price"><span
-        style="font-size: medium;">INR :</span> {{rooms.Price}} <span>&#8377;</span></p>
+        style="font-size: medium;">INR :</span> <span id="price">{{rooms.Price}} </span><span>&#8377;</span></p>
+ 
+   <form action="" id="checkout-form">
+  
 
-    <form action="/booked" method="POST">
       <input type="hidden" name="ID" value="{{user._id}}">
      
        {{#if gMail}}
 Mobile &nbsp &nbsp :
 <input type="text" style="margin-bottom: 15px;" name="Mobile" placeholder="mobile number"><br>
+Name &nbsp &nbsp :
+<input type="text" style="margin-bottom: 15px;" name="Name" placeholder="Name"><br>
+
 {{else if user}}
  <input type="hidden" name="Mobile" value="{{user.Mobile}}">
   <input type="hidden" name="Name" value="{{user.Name}}">
@@ -103,7 +108,7 @@ Mobile &nbsp &nbsp :
           <input type="hidden" name="Type" value="{{rooms.Type}}">
             <input type="hidden" name="Price" value="{{rooms.Price}}">
              <input type="hidden" name="canCancel" value="">
-           
+             
 
   <script>
 
@@ -113,20 +118,88 @@ Mobile &nbsp &nbsp :
       Checkout: <input id="datePicker" type="date" name="checkOut" style="margin-top: 20px;"><br>
       <div style="padding: 5px ;margin-top: 10px;  ">
         <div style="float: left;">Guest(s) :</div>
-        <div style="float:left ;margin-left: 10px;"><button type="button" id="subtract"> - 1</button></div>
+        <div style="float:left ;margin-left: 10px;"><button style="border-radius: 50%;outline:none;border: none;background-color: thistle; width:30px;" type="button" id="subtract"> - </button></div>
 
-        <div style="float:left;margin-left: 10px;"> <input name="Guest" style="width: 30px;" type="text" id="w" readonly></div>
+        <div style="float:left;margin-left: 10px;"> <input name="Guest" style="width: 30px; outline:none;border: none; " type="text" id="w" readonly></div>
  
         {{!-- <script>      $('#counter').change(function () {
             $('#Room').val($(this).val());
           });</script> --}}
-        <div style="margin-left: 170px;"><button type="button" id="add"> + 1</button></div>
+        <div style="margin-left: 170px;"><button class="button" type="button" style="outline:none;border: none;border-radius: 50%;background-color: thistle;width:30px;;" id="add"> + </button></div>
       </div>    <p style="margin-left: 90px; color: red;">For every 4th guest a room is added</p>
       <div style="float: left; margin-top: 10px;">Room(s) :</div>
-      <div style="margin-left: 100px; margin-top: 10px;"><input name="Room" style="width: 30px;" type="text" id="q" readonly></div>
+      <div style="margin-left: 100px; margin-top: 10px;"><input class="button" name="Room" style="width: 30px; outline:none;border: none;" type="text" id="q" readonly></div>
       <input style="margin-top: 20px; border-radius: 10px; " id="btn" class="btn btn-success  btn-lg" type="submit"
         value="Let's Book It">
+   
+  
     </form>
+    
+   
+   
+<script>
+    $("#checkout-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:'/booked',
+            method:'post',
+            data:$('#checkout-form').serialize(),
+            success:((data)=>{
+        console.log(data)
+                    razorpayPayment(data)
+                
+            })
+        }) 
+    })
+    function razorpayPayment(order){ 
+      var options = {
+     
+    "key": "rzp_test_4oASb9KdHLZimd", // Enter the Key ID generated from the Dashboard
+    "amount":order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Hashil",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+console.log(response)
+       verifypayment(response,order)
+       
+    },
+    "prefill": {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    "notes": {
+        "address": "Razorpay Corporate Office"
+    },
+    "theme": {
+        "color": "#3399cc"
+    }
+};  
+var rzp1 = new Razorpay(options);
+ rzp1.open();
+    }
+     function verifypayment(payment,order){
+            $.ajax({
+                url:'/verify-payment',
+                data:{
+                    payment,
+                    order
+                },
+                method:'post',
+                success:(response)=>{
+                    if(response.status){
+                        location.href='/roombooked'
+                    }else{
+                        alert('payment failed')
+                    }
+                }
+            })
+        }
+</script>
+
 
     <script>
     
